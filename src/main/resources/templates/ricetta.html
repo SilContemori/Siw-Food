@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<title>Ricette</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="/css/global.css">
+	<link rel="stylesheet" href="/css/ricetta.css">
+	<body>
+<!--		 INTESTAZIONE -->
+		   <header class="header">
+		       <div class="icona"><img src="/images/titolo.png" width="40%" /></div>
+		       <ul class="navbar">
+		           <li><a href="/">Home</a></li>
+		           <li><a href="/ricetta">Ricette</a></li>
+		           <li><a href="#Cuochi">Cuochi</a></li>
+		
+		       </ul>
+		   </header>
+		<div class="container-nav"></div>
+		   <div th:if="${ricetta}">
+		   		<span th:text="'Nome: '+ ${ricetta.nome}"></span>
+		   	</div>
+
+	</body>
+</html>

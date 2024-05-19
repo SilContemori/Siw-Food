@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	<title>Ricette</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	 <link rel="stylesheet" href="/css/ricette.css">
+	<link rel="stylesheet" href="/css/global.css"> 
+<!--	<link rel="stylesheet" href="../static/css/global.css">-->
+<!--	<link rel="stylesheet" href="../static/css/ricette.css">-->
+
+	<body>
+		<!-- INTESTAZIONE -->
+	   <header class="header">
+<!--	       <div class="icona"><img src="../static/images/titolo.png" width="40%" /></div>-->
+	        <div class="icona"><img src="/images/titolo.png" width="40%" /></div> 
+	       <ul class="navbar">
+	           <li><a href="/">Home</a></li>
+	           <li><a href="/ricetta">Ricette</a></li>
+	           <li><a href="#Cuochi">Cuochi</a></li>
+	       </ul>
+	   </header>
+		<!--CORPO-->
+		<div class="container-nav"></div>
+		<div class="ricette-corpo">
+			<h2 style="color:black;">Ricette</h2>
+		</div>
+		<div th:if="${ricette==null || ricette.isEmpty()}">Non ci sono studenti nel sistema</div>
+		<ul>
+			<div class="container">
+				<li th:each="ricetta : ${ricette}">
+					<div class="image"><img src="/images/iconaSiwFood.png" width="100%"></div>
+							<a th:href="@{'/ricetta' + '/' + ${ricetta.id}}"
+								th:text="${ricetta.nome}"></a>
+						</div>			
+				</li>
+			</div>
+		</ul>
+<!--	<div class="container">-->
+<!--        <div class="image"><img src="/images/iconaSiwFood.png" width="100%"></div>-->
+<!--        <div class="image"><img src="/images/iconaSiwFood.png" width="100%"></div>-->
+<!--        <div class="image"><img src="/images/iconaSiwFood.png" width="100%"></div>-->
+<!--        <div class="image"><img src="/images/iconaSiwFood.png" width="100%"></div>-->
+<!--        <div class="image"><img src="/images/iconaSiwFood.png" width="100%"></div>-->
+<!--        <div class="image"><img src="/images/iconaSiwFood.png" width="100%"></div>-->
+<!--        <div class="image"><img src="/images/iconaSiwFood.png" width="100%"></div>-->
+<!--        <div class="image"><img src="/images/iconaSiwFood.png" width="100%"></div>-->
+<!--		<div class="image"><img src="/images/iconaSiwFood.png" width="100%"></div>-->
+<!--		<div class="image"><img src="/images/iconaSiwFood.png" width="100%"></div>-->
+<!--		<div class="image"><img src="/images/iconaSiwFood.png" width="100%"></div>-->
+		
+<!--		<div class="image"><img src="/images/iconaSiwFood.png" width="100%"></div>-->
+<!--		<div class="image"><img src="/images/iconaSiwFood.png" width="100%"></div>-->
+<!--		<div class="image"><img src="/images/iconaSiwFood.png" width="100%"></div>-->
+<!--		<div class="image"><img src="/images/iconaSiwFood.png" width="100%"></div>-->
+<!--		<div class="image"><img src="/images/iconaSiwFood.png" width="100%"></div>-->
+<!--		<div class="image"><img src="/images/iconaSiwFood.png" width="100%"></div>-->
+<!--		<div class="image"><img src="/images/iconaSiwFood.png" width="100%"></div>-->
+<!--		<div class="image"><img src="/images/iconaSiwFood.png" width="100%"></div>-->
+<!--		<div class="image"><img src="/images/iconaSiwFood.png" width="100%"></div>-->
+<!--		<div class="image"><img src="/images/iconaSiwFood.png" width="100%"></div>-->
+<!--		<div class="image"><img src="/images/iconaSiwFood.png" width="100%"></div>-->
+<!--		<div class="image"><img src="/images/iconaSiwFood.png" width="100%"></div>-->
+<!--		<div class="image"><img src="/images/iconaSiwFood.png" width="100%"></div>-->
+<!--		<div class="image"><img src="/images/iconaSiwFood.png" width="100%"></div>-->
+<!--		<div class="image"><img src="/images/iconaSiwFood.png" width="100%"></div>-->
+<!--		<div class="image"><img src="/images/iconaSiwFood.png" width="100%"></div>-->
+<!--		<div class="image"><img src="/images/iconaSiwFood.png" width="100%"></div>-->
+<!--		<div class="image"><img src="/images/iconaSiwFood.png" width="100%"></div>-->
+		
+<!--    </div>-->
+
+<!--			<section>-->
+<!--				<div class="container-botton"></div>-->
+<!--				<div class="footer-container"></div>-->
+<!--			</section>-->
+			
+	</body>
+</html>

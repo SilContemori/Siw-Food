@@ -1,0 +1,96 @@
+.container-nav{
+	width: 100%;
+    height: 60px;	
+     
+/*    background-color: aquamarine;*/
+}
+
+.ricette-content{
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(300px,auto));
+    gap: 2rem;
+    align-items: center;
+    margin-top: 4rem;
+    cursor: pointer;
+}
+
+.row{
+/*    transition: all .40s ease;*/
+	display: flex;
+	flex-direction: row;
+}
+
+/* .ricette{
+    padding-top: 110px;
+} */
+
+.ricette-text{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 0;
+}
+
+.ricette-left h4{
+    font-size: 23px;
+}
+
+.ricette-right h5{
+    color: orange;
+    font-size: 23px;
+}
+
+.row p{
+    color: black;
+    font-size: 15px;
+    line-height: 30px;
+    margin-bottom: 15px;
+
+}
+
+.row img{
+	width: 100%;
+	height: auto;
+	border-radius: 10px;
+}
+
+.column{
+	display: flex;
+	flex-direction: column;
+/*	vertical-align: center;*/
+}
+
+.container {
+	width: 100%;
+    display: flex;
+    flex-direction: row;  
+    flex-wrap: wrap; 
+    padding-left: 3%;
+    gap: 1rem;
+}
+
+.image{
+	width: 150px;
+ }
+
+
+.footer-container {
+	height: 60px;
+    width: 100%; 
+    position: fixed;
+    bottom: 0; 
+    left: 0; 
+    background-color: orange; 
+    padding: 20px; 
+    text-align: center; 
+}
+
+.container-botton{
+	width: 100%;
+    height: 60px;
+/*    bottom: 0; */
+/*    left: 0; */
+    background-color: aqua;
+}
+
+
