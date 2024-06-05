@@ -1,0 +1,211 @@
+.container-nav{
+	width: 100%;
+    height: 60px;	
+}
+
+body{
+/*	background-color:rgb(253, 242, 219);	*/
+	width: 100%;
+	margin:0;
+	padding: 0;
+	box-sizing: border-box;
+	min-height: 100vh;
+}
+
+ul{
+	list-style-type:none ;
+	margin:0;
+	padding: 0;
+	display: flex;
+	align-items: center;
+}
+
+a{
+	text-decoration: none;
+}
+
+.pippo{
+	height:300px;
+/*	height: 100px;*/
+	width: 100%;
+/*	border: 2px solid orange;*/
+	object-fit: cover;
+/*	background: url("../images/dettagliCuoco.png") no-repeat 50% 70% / cover;*/
+	background-color:rgb(254, 121, 1);
+	min-height: calc(100px + 15vw);
+/*	background-color: red;*/
+}
+
+.header__wrapper .cols__container .left__col{
+	padding: 50px 20px;
+/*	padding-top: 50px;*/
+/*	text-align: center;*/
+	max-width: 350px;
+
+	margin:0 auto;
+	display: flex;
+	flex-direction: column;
+	
+	align-items: center;
+}
+	
+.relative {
+	margin: 0 auto;
+	position: relative;
+	display: flex;
+	background-color: red;
+}
+
+.image__container{
+	position: absolute;
+	top: 0;
+	left: 0;
+	transform: translateX(-50%) translateY(-70%);
+}
+
+.header__wrapper .cols__container .left__col .image__container img{
+	width: 120px;
+	height: 120px;
+	object-fit: cover;
+	border-radius: 50%;
+	display: block;
+	box-shadow: 1px 3px 12px black;
+}
+
+.header__wrapper .cols__container .left__col h2{
+	margin-top: 60px;
+	font-weight: 600;
+	font-size: 22px;
+	margin-bottom: 5px;
+}
+
+.header__wrapper .cols__container .left__col p{
+	font-size: 0.9rem;
+	color: black;
+	margin:0;
+}
+
+.header__wrapper .cols__container .left__col .about{
+	justify-content: space-between;
+	position: relative;
+	margin: 35px 0;
+}
+
+.header__wrapper .cols__container .left__col .about li{
+	display: flex;
+	flex-direction: column;
+	color: azure;
+	font-size: 0.9rem;
+}
+
+.header__wrapper .cols__container .left__col .about li span{
+	color: black;
+	font-weight: 600;
+}
+
+.header__wrapper .cols__container .left__col .about::after{
+	position: absolute;
+	content: "";
+	bottom: -16px;
+	display: block;
+	background-color: grey;
+	height: 1px;
+	width: 100%;
+}
+
+.header__wrapper .cols__container .content p{
+	font-size: 1rem;
+	color: black;
+	line-height:1.8cm;
+}
+
+.header__wrapper .cols__container .content ul{
+	gap: 30px;
+	justify-content: center;
+	align-items: center;
+	margin-top: 25px;
+}
+
+.header__wrapper .cols__container .content ul li{
+	font-size: 1.3rem;
+}
+
+.nav{
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	flex-direction: column;
+}
+
+.nav ul{
+	display: flex;
+	gap: 20px;
+	flex-direction: column;
+}
+
+.nav ul li a{
+	text-transform: uppercase;
+	color: black;
+}
+
+.header__wrapper .cols__container .right__col .nav ul li a {
+  color: #1d1d1d;
+  font-weight: 600;
+}
+
+.op{
+text-transform: uppercase;
+  color: #1d1d1d;
+  font-weight: 600;
+}
+/*.header__wrapper .cols__container .right__col nav button {*/
+/*  background: #0091ff;*/
+/*  color: #fff;*/
+/*  border: none;*/
+/*  padding: 10px 25px;*/
+/*  border-radius: 4px;*/
+/*  cursor: pointer;*/
+/*  margin-top: 20px;*/
+/*}*/
+/*.header__wrapper .cols__container .right__col nav button:hover {*/
+/*  opacity: 0.8;*/
+/*}*/
+.header__wrapper .cols__container .right__col .photos {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: 20px;
+}
+.header__wrapper .cols__container .right__col .photos img {
+  max-width: 100%;
+  display: block;
+/*  height: 100%;*/
+  object-fit: cover;
+}
+
+
+
+/* Responsiveness */
+
+@media (min-width: 868px) {
+  .header__wrapper .cols__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 90%;
+    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 50px;
+  }
+  .header__wrapper .cols__container .left__col {
+    padding: 25px 0px;
+  }
+  .nav ul {
+    flex-direction: row;
+    gap: 30px;
+  }
+ .photos {
+    height: 365px;
+
+}
+
+}

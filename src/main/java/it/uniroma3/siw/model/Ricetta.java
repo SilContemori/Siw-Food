@@ -34,11 +34,11 @@ public class Ricetta {
 	public void setCuoco(Cuoco cuoco) {
 		this.cuoco = cuoco;
 	}
-	public List<Ingrediente> getIngrediente() {
+	public List<Ingrediente> getIngredienti() {
 		return ingredienti;
 	}
-	public void setIngrediente(List<Ingrediente> ingrediente) {
-		this.ingredienti = ingrediente;
+	public void setIngrediente(List<Ingrediente> ingredienti) {
+		this.ingredienti = ingredienti;
 	}
 	public Long getId() {
 		return id;

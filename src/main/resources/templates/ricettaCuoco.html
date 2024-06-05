@@ -42,7 +42,7 @@
 		<!--CORPO-->
 		<div class="container-nav"></div>
 		<div style="padding: 20px;">
-			<h2 style="padding-bottom: 20px;">Ricetta</h2>
+			<h2 style="padding-bottom: 20px;">Ricetta Modificabile</h2>
 			<div class="container">
 				<div class="image"><img style="width: 100%;" src="/images/iconaSiwFood.png">
 			</div>
@@ -65,12 +65,13 @@
 				<div th:unless="${#lists.isEmpty(ricetta.ingredienti)}">
 					<h3>Ingredienti</h3>
 					<li th:each="ingrediente: ${ricetta.ingredienti}">
-<!--						<img src="/images/iconaSiwFood.png" alt="Utente">-->
-<!--						<a th:href="@{'/ricetta' + '/' + ${ricetta.id}}"-->
-<!--							th:text="${ricetta.nome}" style="padding: 20px;"></a>-->
+					<!--						<img src="/images/iconaSiwFood.png" alt="Utente">-->
+					<!--						<a th:href="@{'/ricetta' + '/' + ${ricetta.id}}"-->
+					<!--							th:text="${ricetta.nome}" style="padding: 20px;"></a>-->
 						<a th:text="${ingrediente.nome}+ ' '+${ingrediente.quantita}" style="padding: 20px;"></a>
 					</li>
 				</div>
+				<a th:href="@{'/formNewIngrediente' + '/'+${ricetta.id}}">Aggiungi Ingredienti</a>
 			</div>
 		</div>
 	</body>

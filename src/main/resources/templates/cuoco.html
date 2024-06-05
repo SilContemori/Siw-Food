@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Cuoco</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="/css/global.css">
+		<link rel="stylesheet" href="/css/cuoco.css">
+		<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+	</head>
+	<body>
+		<!--INTESTAZIONE -->
+	<header class="header">
+        <div class="icona"><img src="/images/titolo.png" width="40%" style="padding-bottom: 15px;" /></div>
+        <ul class="navbar">
+            <li><a href="/">Home</a></li>
+            <li><a href="/ricetta">Ricette</a></li>
+            <li><a href="/cuoco">Cuochi</a></li>
+			<div th:if="${userDetails}">
+				<li>
+					<a href="/logout">
+						<i class='bx bx-log-out'style="font-size: 1.4rem;"></i>
+					</a>
+				</li>
+			</div>
+			<div th:if="${userDetails}">
+				<li>
+					<a href="/dettagliUser">
+						<i class='bx bxs-user-detail'style="font-size: 1.4rem;"></i>
+					</a>
+				</li>
+			</div>
+			<div th:unless="${userDetails}">
+				<li>
+					<a href="/login">
+						<i class='bx bx-log-in'	style="font-size: 1.4rem;"></i>
+					</a>
+				</li>
+			</div>
+        </ul>
+    </header>
+	<!--CORPO-->
+	<div class="container-nav"></div>
+	<h2 style="padding: 20px;">Dettagli Cuoco</h2>
+		<div class="container">
+			<div class="image"><img style="width: 100%;" src="/images/iconaSiwFood.png">
+		</div>
+		<div th:if="${cuoco}">
+			<h3>Nome:</h3>
+			<span th:text="${cuoco.nome}"></span>
+			<br>
+			<h3>Cognome:</h3>
+			<span th:text="${cuoco.cognome}"></span>
+			<br>
+			<div th:if="${cuoco.dataDiNascita!=null}">
+				<h3>Data di Nascita:</h3>
+				<span th:text="${cuoco.dataDiNascita}"></span>
+			</div>
+		</div>
+		<div th:if="${cuoco}">
+			<div th:unless="${#lists.isEmpty(cuoco.ricette)}">
+				<h3>Ricette</h3>
+				<li th:each="ricetta: ${cuoco.ricette}">
+					<img src="/images/iconaSiwFood.png" alt="Utente">
+					<a th:href="@{'/ricetta' + '/' + ${ricetta.id}}"
+						th:text="${ricetta.nome}" style="padding: 20px;"></a>
+				</li>
+			</div>
+		</div>
+	</body>
+</html>

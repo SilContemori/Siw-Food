@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Aggiungi Cuoco</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="/css/global.css">
+		<link rel="stylesheet" href="/css/ricette.css">
+		<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+	</head>
+	<body>
+	<!-- INTESTAZIONE -->
+	<header class="header">
+        <div class="icona"><img src="/images/titolo.png" width="40%" style="padding-bottom: 15px;"/></div>
+        <ul class="navbar">
+            <li><a href="/">Home</a></li>
+            <li><a href="/ricetta">Ricette</a></li>
+            <li><a href="/cuoco">Cuochi</a></li>
+			<div th:if="${userDetails}">
+				<li>
+					<a href="/logout">
+						<i class='bx bx-log-out' style="font-size: 1.4rem;"></i>
+					</a>
+				</li>
+			</div>
+			<div th:if="${userDetails}">
+				<li>
+					<a href="/dettagliUser">
+						<i class='bx bxs-user-detail' style="font-size: 1.4rem;"></i>
+					</a>
+				</li>
+			</div>
+			<div th:unless="${userDetails}">
+				<li>
+					<a href="/login">
+						<i class='bx bx-log-in'	style="font-size: 1.4rem;"></i>
+					</a>
+				</li>
+			</div>
+        </ul>
+    </header>
+	<!--CORPO-->
+	<div class="container-nav"></div>
+	<h1>Aggiungi una Ricetta</h1>
+		<form th:action="@{/admin/cuoco}" method="POST" th:object="${cuoco}">
+	  		<div th:if="${#fields.hasGlobalErrors()}">
+	  			<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p> 
+	  		</div>
+			
+			<div>
+				<label>Nome:</label> 
+				<span><input type="text" th:field="${cuoco.nome}" /></span>
+			    <span th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}">
+			    </span>
+				<label>Cognome:</label> 
+				<span><input type="text" th:field="${cuoco.cognome}" /></span>
+			    <span th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}">
+			    </span>
+				<label>Data di Nascita:</label> 
+				<span><input type="date" name="dataDiNascita" placeholder="gg/mm/aaaa" required th:field="${cuoco.dataDiNascita}" /></span>
+			    <span th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}">
+			    </span>
+				<label>Email:</label> 
+				<span><input type="text" th:field="${cuoco.email}" /></span>
+			    <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}">
+			    </span>
+			</div>
+			<div>
+				<span><button type="submit">Conferma</button></span>
+			</div>
+		</form>
+
+			
+	</body>
+</html>

@@ -4,23 +4,34 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 @Entity
 public class Cuoco {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
-	@NotNull
+	@NotBlank
 	private String nome;
-	@NotNull
+	@NotBlank
 	private String cognome;
-	@NotNull
+	@NotBlank
+	private String email;
+	
 	private LocalDate  dataDiNascita;
-	@NotNull
-	private String luogoDiNascita;
-	private String descrizione;
+	
+//	private String luogoDiNascita;
+//	private String descrizione;
+	
 	@OneToMany(mappedBy="cuoco")
 	private List<Ricetta> ricette;
+	
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
 	
 	public Long getId() {
 		return id;
@@ -46,21 +57,21 @@ public class Cuoco {
 	public void setDataDiNascita(LocalDate dataDiNascita) {
 		this.dataDiNascita = dataDiNascita;
 	}
-	public String getLuogoDiNascita() {
-		return luogoDiNascita;
-	}
-	public void setLuogoDiNascita(String luogoDiNascita) {
-		this.luogoDiNascita = luogoDiNascita;
-	}
-	public String getDescrizione() {
-		return descrizione;
-	}
-	public void setDescrizione(String descrizione) {
-		this.descrizione = descrizione;
-	}
+//	public String getLuogoDiNascita() {
+//		return luogoDiNascita;
+//	}
+//	public void setLuogoDiNascita(String luogoDiNascita) {
+//		this.luogoDiNascita = luogoDiNascita;
+//	}
+//	public String getDescrizione() {
+//		return descrizione;
+//	}
+//	public void setDescrizione(String descrizione) {
+//		this.descrizione = descrizione;
+//	}
 	@Override
 	public int hashCode() {
-		return Objects.hash(cognome, dataDiNascita, descrizione, luogoDiNascita, nome);
+		return Objects.hash(cognome, dataDiNascita, nome);
 	}
 	
 	public List<Ricetta> getRicette() {
@@ -79,8 +90,7 @@ public class Cuoco {
 			return false;
 		Cuoco other = (Cuoco) obj;
 		return Objects.equals(cognome, other.cognome) && Objects.equals(dataDiNascita, other.dataDiNascita)
-				&& Objects.equals(descrizione, other.descrizione)
-				&& Objects.equals(luogoDiNascita, other.luogoDiNascita) && Objects.equals(nome, other.nome);
+				&& Objects.equals(nome, other.nome);
 	}
 	
 }

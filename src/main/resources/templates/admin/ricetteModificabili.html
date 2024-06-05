@@ -48,7 +48,9 @@
 					<li th:each="ricetta: ${ricette}">
 						<div class="image"><img src="/images/iconaSiwFood.png" width="100%"></div>	
 							<a th:href="@{'/ricetta' + '/' + ${ricetta.id}}"
-								th:text="${ricetta.nome}" style="padding: 20px;"></a>
+								th:text="${ricetta.nome}" style="padding: 20px;"></a>WW
+<!--							<a th:href="@{'/ricetta' + '/' + ${ricetta.id}}"-->
+<!--								th:text="${ricetta.nome}" style="padding: 20px;"></a>-->
 					</li>						
 				</ul>
 <!--			<section>-->

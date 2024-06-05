@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Ricette</title>
+		<title>Cuochi</title>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" href="/css/global.css">
-		<link rel="stylesheet" href="/css/ricette.css">
+		<link rel="stylesheet" href="/css/cuochi.css">
 		<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 	</head>
 	<body>
@@ -38,17 +38,17 @@
 				</li>
 			</div>
         </ul>
-    </header>
+	</header>
 	<!--CORPO-->
 	<div class="container-nav"></div>
 	<div class="padding" style="padding: 40px;">
-			<h1 style="padding-bottom: 10px;">Ricette</h1>
-				<div th:if="${ricette==null || ricette.isEmpty()}">Non ci sono ricette nel sistema</div>
+			<h1 style="padding-bottom: 10px;">Cuochi</h1>
+				<div th:if="${cuochi==null || cuochi.isEmpty()}">Non ci sono cuochi nel sistema</div>
 				<ul class="containerFoto">	
-					<li th:each="ricetta: ${ricette}">
+					<li th:each="cuoco: ${cuochi}">
 						<div class="image"><img src="/images/iconaSiwFood.png" width="100%"></div>	
-							<a th:href="@{'/ricetta' + '/' + ${ricetta.id}}"
-								th:text="${ricetta.nome}" style="padding: 20px;"></a>
+							<a th:href="@{'/cuoco' + '/' + ${cuoco.id}}"
+								th:text="${cuoco.nome}" style="padding: 20px;"></a>
 					</li>						
 				</ul>
 <!--			<section>-->

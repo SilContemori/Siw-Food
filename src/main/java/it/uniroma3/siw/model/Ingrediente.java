@@ -12,7 +12,7 @@ public class Ingrediente {
 	@NotNull
 	private String nome;
 	@NotNull
-	private Integer quantita;
+	private int quantita;
 	@ManyToMany(mappedBy="ingredienti")
 	private List<Ricetta> ricette;
 	
@@ -32,11 +32,11 @@ public class Ingrediente {
 		this.nome = nome;
 	}
 
-	public Integer getQuantita() {
+	public int getQuantita() {
 		return quantita;
 	}
 
-	public void setQuantita(Integer quantita) {
+	public void setQuantita(int quantita) {
 		this.quantita = quantita;
 	}
 

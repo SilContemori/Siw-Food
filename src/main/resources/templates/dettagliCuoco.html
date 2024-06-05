@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Home Page</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="/css/global.css">
+	<link rel="stylesheet" href="/css/dettagli.css">	
+	<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+    <!-- INTESTAZIONE -->
+	<header class="header">
+        <div class="icona"><img src="/images/titolo.png" width="40%" style="padding-bottom: 15px;"/></div>
+        <ul class="navbar">
+            <li><a href="/">Home</a></li>
+            <li><a href="/ricetta">Ricette</a></li>
+            <li><a href="/cuoco">Cuochi</a></li>
+			<div th:if="${userDetails}">
+				<li>
+					<a href="/logout">
+						<i class='bx bx-log-out'style="font-size: 1.4rem;" ></i>
+					</a>
+				</li>
+			</div>
+			<div th:if="${userDetails}">
+				<li>
+					<a href="/dettagliUser">
+						<i class='bx bxs-user-detail'style="font-size: 1.4rem;"></i>
+					</a>
+				</li>
+			</div>
+			<div th:unless="${userDetails}">
+				<li>
+					<a href="/login">
+						<i class='bx bx-log-in'style="font-size: 1.4rem;"></i>
+					</a>
+				</li>
+			</div>
+        </ul>
+    </header>
+    <!-- CORPO -->
+	<div class="container-nav"></div>
+	<div class="header__wrapper">
+		<div class="pippo"></div>
+		<div class="cols__container">
+			<div class="left__col">
+				<div class="relative">
+					<div class="image__container">
+						<img src="/images/iconaSiwFood.png	" alt="Utente">
+					</div>
+				</div>
+				<h2 th:text="${cuoco.nome}+' '+${cuoco.cognome}"></h2>
+				<p th:text="${cuoco.email}"></p>
+				<div th:if="${cuoco.dataDiNascita!=null}">
+					<p th:text="${cuoco.dataDiNascita}"></p>
+				</div>
+			</div>
+			<div class="right__col">
+				<nav class="nav"style="padding:20px">
+					<ul>
+						<li><a th:href="@{'/formNewRicetta'}">aggiungi ricetta</a></li>
+						<li><a href="#">modifica ricetta</a></li> <!-- manda pagina per selezionare ricetta da modificate-->
+						<li><a href="#">rimuovi ricetta</a></li>
+<!--						<li><a href="#">ricette</a></li>-->
+					</ul>
+				</nav>
+				<div th:unless="${#lists.isEmpty(cuoco.ricette)}" class="photos">
+					<li th:each="ricetta: ${cuoco.ricette}">
+						<img src="/images/iconaSiwFood.png" alt="Utente">
+						<a th:href="@{'/ricetta' + '/' + ${ricetta.id}}"
+							th:text="${ricetta.nome}" style="padding: 20px;"></a>
+					</li>
+				</div>
+			</div>
+		</div>
+	</div>
+   </body>
+</html>

@@ -1,0 +1,60 @@
+ .carosello {
+/*	max-width: 100%;*/
+    overflow-x: auto; 
+    white-space: nowrap;
+    display: flex; 
+   
+/*    margin: 20px;*/
+    
+ }
+
+.immagini {
+    display: flex;
+    gap: 10px; 
+    padding-left: 1%;
+    padding-right: 1%;
+/*    padding-bottom: 1%;*/
+}
+
+.immagini img {
+    width: 200px; 
+    height: auto; 
+    object-fit: cover;
+     
+}
+
+.column{
+	width: 100%;
+    display: flex;
+    flex-direction: row;  
+    flex-wrap: wrap; 
+/*    padding-left: 2%;*/
+    gap: 0.2rem;
+}
+
+/*::-webkit-scrollbar {*/
+/*    width: 10px; */
+/*    height: 10px;*/
+/*}*/
+
+/*::-webkit-scrollbar-track {*/
+/*    background-color: white; */
+/*}*/
+
+/*::-webkit-scrollbar-thumb {*/
+/*    background-color: orange; */
+/*    border-radius: 10px;*/
+/*} */
+
+.container-nav{
+	width: 100%;
+    height: 60px;	
+}
+
+.padding{
+	padding: 20px;
+}
+
+h1{
+	padding: 20px;
+}

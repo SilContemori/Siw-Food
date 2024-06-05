@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Registrazione Effettuata</title>
+	<link rel="stylesheet" href="/css/global.css" />
+</head>
+
+<body>
+	<header class="header">
+       <div class="icona"><img src="/images/titolo.png" width="40%" style="padding-bottom: 15px;"/></div>
+       <ul class="navbar">
+           <li><a href="/">Home</a></li>
+           <li><a href="/ricetta">Ricette</a></li>
+           <li><a href="/cuoco">Cuochi</a></li>
+       </ul>
+   </header>
+	<!--CORPO-->
+	<div class="container-nav"></div>
+	<h2>Congratulazioni ti sei registrato!</h2>
+	<div>
+		<span>Nome: </span>
+		<span th:text="${user.name}"></span>
+	</div>
+	<div>
+		<span>Cognome: </span>
+		<span th:text="${user.surname}"></span>
+	</div>
+	<div>
+		<span>Email: </span>
+		<span th:text="${user.email}"></span>
+	</div>
+</body>
+</html>

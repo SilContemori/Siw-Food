@@ -4,18 +4,40 @@
 	<title>Home Page</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/index.css">
+<!--    <link rel="stylesheet" href="/css/index.css">-->
 	<link rel="stylesheet" href="/css/global.css">
+	<link rel="stylesheet" href="/css/index.css">
+	<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
     <!-- INTESTAZIONE -->
     <header class="header">
-        <div class="icona"><img src="/images/titolo.png" width="40%" /></div>
+        <div class="icona"><img src="/images/titolo.png" width="40%" style="padding-bottom: 15px;"/></div>
         <ul class="navbar">
             <li><a href="/">Home</a></li>
             <li><a href="/ricetta">Ricette</a></li>
-            <li><a href="#Cuochi">Cuochi</a></li>
-
+            <li><a href="/cuoco">Cuochi</a></li>
+			<div th:if="${userDetails}">
+				<li>
+					<a href="/logout">
+						<i class='bx bx-log-out'style="font-size: 1.4rem;" ></i>
+					</a>
+				</li>
+			</div>
+			<div th:if="${userDetails}">
+				<li>
+					<a href="/dettagliUser">
+						<i class='bx bxs-user-detail'style="font-size: 1.4rem;"></i>
+					</a>
+				</li>
+			</div>
+			<div th:unless="${userDetails}">
+				<li>
+					<a href="/login">
+						<i class='bx bx-log-in'style="font-size: 1.4rem;"></i>
+					</a>
+				</li>
+			</div>
         </ul>
     </header>
     <!-- CORPO -->
@@ -33,14 +55,30 @@
             <img src="/images/reparto-cuochi.jpg" alt="Descrizione immagine">
         </div>
         <div class="text-column">
-            <h3>Vieni a scoprire tutti i cuochi e le loro ricette → <button>Accedi</button></h3>
+            <h3>Scopri le nostre deliziose ricette e conosci i talentuosi cuochi che le rendono uniche. Clicca qui per accedere alla pagina dei nostri chef e lasciati ispirare dalla loro maestria culinaria.</h3>
+			<div class="spazio"></div>
+			<a th:href="@{/login}">
+				<button>Accedi
+					 <div class="arrow-wrapper">
+				     	<div class="arrow"></div>
+				    </div>
+				</button>
+			</a>
         </div>
     </section>
     <!-- REPARTO RICETTE -->
     <section class="container" id="info">
         
         <div class="text-column">
-            <h3>Vieni a scoprire tutte le migliori ricette scritte dai cuochi più amati → <button>Accedi</button></h3>
+            <h3>Esplora una vasta selezione di ricette deliziose e creative per ogni occasione. Clicca qui per accedere alla nostra raccolta di ricette e trova l'ispirazione per il tuo prossimo piatto.</h3>
+			<div class="spazio"></div>
+			<a th:href="@{/login}">
+				<button>Accedi
+					 <div class="arrow-wrapper">
+				     	<div class="arrow"></div>
+				    </div>
+				</button>
+			</a>
         </div>
         <div class="image">
             <img src="/images/reparto-ricette.jpg" alt="Descrizione immagine">

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+	<title>Ricette</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="/css/ricettePerTipo.css">
+	<link rel="stylesheet" href="/css/global.css"> 
+	<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+	<body>
+		<!-- INTESTAZIONE -->
+		<header class="header">
+		        <div class="icona"><img src="/images/titolo.png" width="40%" style="padding-bottom: 15px;"/></div>
+		        <ul class="navbar">
+		            <li><a href="/">Home</a></li>
+		            <li><a href="/ricetta">Ricette</a></li>
+		            <li><a href="/cuoco">Cuochi</a></li>
+					<div th:if="${userDetails}">
+						<li>
+							<a href="/logout">
+								<i class='bx bx-log-out'style="font-size: 1.4rem;" ></i>
+							</a>
+						</li>
+					</div>
+					<div th:if="${userDetails}">
+						<li>
+							<a href="/dettagliUser">
+								<i class='bx bxs-user-detail'style="font-size: 1.4rem;"></i>
+							</a>
+						</li>
+					</div>
+					<div th:unless="${userDetails}">
+						<li>
+							<a href="/login">
+								<i class='bx bx-log-in'	style="font-size: 1.4rem;"></i>
+							</a>
+						</li>
+					</div>
+		        </ul>
+		    </header>
+	   <div class="container-nav"></div>
+		<!--CORPO-->
+		<div class="padding">
+			  <div th:if="${ricette==null || ricette.isEmpty()}">Non ci sono studenti nel sistema</div>
+			  <h1>Primi</h1>
+			  <ul>
+			      <div class="carosello">
+			          <div class="immagini">
+			              <li th:each="ricetta : ${ricette}" th:if="${ricetta.tipologia=='primo'}">
+							<div class="column">
+			                  <img src="/images/iconaSiwFood.png" alt="Descrizione 1">
+							  <a th:href="@{'/ricetta' + '/' + ${ricetta.id}}"
+							  	th:text="${ricetta.nome}" style="padding: 20px;"></a>
+							</div>
+			              </li>
+			          </div>
+			      </div>
+				  <h1>Secondi</h1>
+				  <div class="carosello">
+	  		          <div class="immagini">
+	  		              <li th:each="ricetta : ${ricette}" th:if="${ricetta.tipologia=='secondo'}">
+							<div class="column">
+	  		                  <img src="/images/iconaSiwFood.png" alt="Descrizione 1">
+							  <a th:href="@{'/ricetta' + '/' + ${ricetta.id}}"
+							  	 th:text="${ricetta.nome}"style="padding: 20px;"></a>
+							</div>
+	  		              </li>
+	  		          </div>
+	  		      </div>
+				  <h1>Contorni</h1>
+	  			  <div class="carosello">
+			          <div class="immagini">
+			              <li th:each="ricetta : ${ricette}" th:if="${ricetta.tipologia=='contorno'}">
+							<div class="column">
+			                  <img src="/images/iconaSiwFood.png" alt="Descrizione 1">
+							  <a th:href="@{'/ricetta' + '/' + ${ricetta.id}}"
+							  	 th:text="${ricetta.nome}"style="padding: 20px;"></a>
+							</div>
+			              </li>
+			          </div>
+			      </div>
+				  <h1>Dolci</h1>
+	  			  <div class="carosello">
+			          <div class="immagini">
+			              <li th:each="ricetta : ${ricette}" th:if="${ricetta.tipologia=='dolce'}">
+							<div class="column">
+			                  <img src="/images/iconaSiwFood.png" alt="Descrizione 1">
+							  <a th:href="@{'/ricetta' + '/' + ${ricetta.id}}"
+							  	 th:text="${ricetta.nome}"style="padding: 20px;"></a>
+							</div>
+			              </li>
+			          </div>
+			      </div>
+			  </ul>
+		</div>
+<!--		  <ul>-->
+<!--			<ul>-->
+<!--			    <div class="carosello">-->
+<!--			        <div class="immagini">-->
+<!--			            <li th:each="ricetta : ${ricette}" th:if="${ricetta.tipologia=='primo'}">-->
+<!--			                <img src="/images/iconaSiwFood.png" alt="Descrizione 1">-->
+<!--			            </li>-->
+<!--			        </div>-->
+<!--			    </div>-->
+<!--			</ul>-->
+<!--			<div class="carosello">-->
+<!--				<div class="immagini">-->
+<!--			    <li th:each="ricetta : ${ricette}">-->
+<!--			        <div th:if="${ricetta.tipologia=='primo'}">-->
+<!--						<img src="/images/iconaSiwFood.png" alt="Descrizione 1">-->
+<!--			        </div>-->
+<!--			    </li>-->
+<!--				</div>-->
+<!--			</div>-->
+<!--		  </ul>-->
+<!--		  <h1>Secondi</h1>-->
+<!--		  <ul>-->
+<!--  			<div class="carosello">-->
+<!--  				<div class="immagini">-->
+<!--  			    <li th:each="ricetta : ${ricette}">-->
+<!--  			        <div th:if="${ricetta.tipologia=='secondo'}">-->
+<!--  						<img src="/images/iconaSiwFood.png" alt="Descrizione 1">-->
+<!--  			        </div>-->
+<!--  			    </li>-->
+<!--  				</div>-->
+<!--  			</div>-->
+<!--  		  </ul>-->
+<!--		  <h1>Contorni</h1>-->
+<!--		  <ul>-->
+<!--			<div class="carosello">-->
+<!--				<div class="immagini">-->
+<!--			    <li th:each="ricetta : ${ricette}">-->
+<!--			        <div th:if="${ricetta.tipologia=='contorno'}">-->
+<!--						<img src="/images/iconaSiwFood.png" alt="Descrizione 1">-->
+<!--			        </div>-->
+<!--					<div th:unless="${ricetta.tipologia=='contorno'}">-->
+<!--						<div class="spazio">-->
+							
+<!--						</div>-->
+<!--					</div>-->
+<!--			    </li>-->
+<!--				</div>-->
+<!--			</div>-->
+<!--		  </ul>-->
+<!--		  <h1>Dolci</h1>-->
+<!--		  <ul>-->
+<!--  			<div class="carosello">-->
+<!--  				<div class="immagini">-->
+<!--  			    <li th:each="ricetta : ${ricette}">-->
+<!--  			        <div th:if="${ricetta.tipologia=='dolce'}">-->
+<!--  						<img src="/images/iconaSiwFood.png" alt="Descrizione 1">-->
+<!--  			        </div>-->
+<!--  			    </li>-->
+<!--  				</div>-->
+<!--  			</div>-->
+<!--  		  </ul>-->
+			
+	</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign in</title>
+	<link rel="stylesheet" href="/css/global.css"/>
+    <link rel="stylesheet" href="/css/sceltaRuolo.css">
+</head>
+
+<body>
+	<header class="header">
+        <div class="icona"><img src="/images/titolo.png" width="40%" style="padding-bottom: 15px;"/></div>
+        <ul class="navbar">
+            <li><a href="/">Home</a></li>
+            <li><a href="/ricetta">Ricette</a></li>
+            <li><a href="/cuoco">Cuochi</a></li>
+
+        </ul>
+    </header>
+<!--CORPO-->
+<!--	<div class="container-nav"></div>-->
+<div class="contenitore">
+	<div class="riga">
+	    <div class="cuoco">
+			<h1 style="padding: 10px;color: white;">Uniciti ai nostri cuochi</h1>
+			<span style="font-size: larger;padding: 10px;color: white;">Sei un cuoco appassionato e desideri condividere le 
+				tue ricette con il mondo? Unisciti alla nostra comunità! Accedi alla tua area personale per pubblicare le tue creazioni 
+				culinarie, personalizzare gli ingredienti e ispirare altri amanti della cucina. </span>
+			<a th:href="@{/registerCuoco}">
+				<button>Sign up
+				 <div class="arrow-wrapper">
+			     <div class="arrow"></div>
+			    </div>
+			</button>
+			</a>
+			
+		</div>
+		<div class="user">
+			<h1 style="padding: 10px;">Unisciti alla community</h1>
+			<span style="font-size: larger;padding: 10px;">	Unisciti alla nostra community e scopri un mondo di sapori! Accedi per esplorare 
+				ricette deliziose, conoscere cuochi talentuosi e tanto altro. Clicca qui per entrare
+				 e iniziare la tua avventura culinaria. </span>
+			<a th:href="@{/register}">
+				 <button class="btn">
+	 			    Sign up
+	 			    <div class="arrow-wrapper">
+	 			        <div class="arrow"></div>
+	 			    </div>
+	 			 </button>
+			</a>
+		</div>
+	</div>
+</div>
+	
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Aggiungi Ricetta</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="/css/global.css">
+		<link rel="stylesheet" href="/css/formNewRicetta.css">
+		<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+	</head>
+	<body>
+	<!-- INTESTAZIONE -->
+	<header class="header">
+        <div class="icona"><img src="/images/titolo.png" width="40%" style="padding-bottom: 15px;"/></div>
+        <ul class="navbar">
+            <li><a href="/">Home</a></li>
+            <li><a href="/ricetta">Ricette</a></li>
+            <li><a href="/cuoco">Cuochi</a></li>
+			<div th:if="${userDetails}">
+				<li>
+					<a href="/logout">
+						<i class='bx bx-log-out' style="font-size: 1.4rem;"></i>
+					</a>
+				</li>
+			</div>
+			<div th:if="${userDetails}">
+				<li>
+					<a href="/dettagliUser">
+						<i class='bx bxs-user-detail' style="font-size: 1.4rem;"></i>
+					</a>
+				</li>
+			</div>
+			<div th:unless="${userDetails}">
+				<li>
+					<a href="/login">
+						<i class='bx bx-log-in'	style="font-size: 1.4rem;"></i>
+					</a>
+				</li>
+			</div>
+        </ul>
+    </header>
+	<!--CORPO-->
+<!--	<div class="container-nav"></div>-->
+	<div class="body">
+		<div class="wrapper">
+			<h1>Aggiungi una Ricetta</h1>
+			<form th:action="@{/ricetta}" method="POST" th:object="${ricetta}">
+		  		<div th:if="${#fields.hasGlobalErrors()}">
+		  			<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p> 
+		  		</div>
+				<div>
+					<label>Nome:</label> 
+					<span><input type="text" th:field="${ricetta.nome}" /></span>
+				    <span th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}">
+				    </span>
+					<br>
+					<label>Tempo di Preparazione:</label> 
+					<span><input type="number" th:field="${ricetta.tempoPreparazioneTot}" /></span>
+				    <span th:if="${#fields.hasErrors('tempoPreparazioneTot')}" th:errors="*{tempoPreparazioneTot}">
+				    </span>
+					<br>
+					<label>Descrizione:</label> 
+					<span><input type="text" th:field="${ricetta.descrizione}" /></span>
+				    <span th:if="${#fields.hasErrors('descrizione')}" th:errors="*{descrizione}">
+				    </span>
+					<br>
+					<label>Tipologia:</label> 
+					<span><input type="text" th:field="${ricetta.tipologia}" /></span>
+				    <span th:if="${#fields.hasErrors('tipologia')}" th:errors="*{tipologia}">
+				    </span>
+				</div>
+				<div>
+					<span><button type="submit">Conferma</button></span>
+				</div>
+			</form>
+		</div>
+	</div>	
+	</body>
+</html>

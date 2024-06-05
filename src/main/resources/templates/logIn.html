@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign in</title>
+	<link rel="stylesheet" href="/css/global.css"/>
+    <link rel="stylesheet" href="/css/logIn.css">
+	
+</head>
+
+<body>
+	<header class="header">
+        <div class="icona"><img src="/images/titolo.png" width="40%" style="padding-bottom: 15px;"/></div>
+        <ul class="navbar">
+            <li><a href="/">Home</a></li>
+            <li><a href="/ricetta">Ricette</a></li>
+            <li><a href="/cuoco">Cuochi</a></li>
+			
+			
+
+        </ul>
+    </header>
+<!--	CORPO-->
+	<div class="body">
+		<div class="wrapper">
+			<h1 class="title">Log In</h1>
+			<form class="form" th:action="@{/login}" method="POST">
+					<div class="input-box">			
+						<label for="username">Username:</label>
+						<input placeholder="Inserisci username..." class="input input-username" name="username" type="text" required />
+					</div>
+					<div class="input-box">
+						<label for="username">Password:</label>				
+						<input placeholder="Inserisci password..." class="input input-password"  name="password" type="password" required />
+					</div>
+					<div>
+						<span th:if="${param.error != null}">Username o password errati</span>
+					</div>
+					<button type="submit" class="btn">Login</button>
+					<div class="register-link">
+						<p>Non hai un account? <a th:href="@{/sceltaRuolo}">Registrati</a></p>
+<!--						<p>Non hai un account? <a th:href="@{/registerCuoco}">Registrati Cuoco</a></p>-->
+					</div>
+			</form>
+		</div>
+	</div>
+</body>
+</html>

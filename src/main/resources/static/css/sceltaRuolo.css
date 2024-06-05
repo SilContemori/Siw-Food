@@ -1,0 +1,151 @@
+*{
+	margin:0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+.container-nav{
+	width: 100%;
+    height: 60px;	
+}
+
+body{
+	display: flex;
+/*	justify-content: center;*/
+/*	align-items: center;*/
+	min-height: 100vh;
+	background-color:rgb(253, 242, 219);
+}
+
+.contenitore{
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+	width: 100%;
+	justify-content: center;
+	padding: 100px;
+}
+
+.riga{
+	display: flex;
+	flex-direction: row;
+/*	gap: 15rem;*/
+	width: 100%;
+	justify-content: space-between;
+}
+
+.cuoco{
+	height: 350px;
+	width: 400px;
+	background-color:orange;
+	border-radius: 4%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	padding: 30px;
+}
+
+/*.user{*/
+/*	height: 350px;*/
+/*	width: 400px;*/
+/*	border-radius: 4%;*/
+/*	display: flex;*/
+/*	flex-direction: column;*/
+/*	justify-content: space-around;*/
+/*	padding: 30px;*/
+/*	border: 3px solid orange;*/
+/*	background-color: transparent;*/
+/*}*/
+
+.user{
+	height: 350px;
+	width: 400px;
+	background-color:transparent;
+	border-radius: 4%;
+	border: 3px solid orange;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	padding: 20px;
+}
+
+.btn {
+  --primary-color: black;
+  --secondary-color: #fff;
+  --hover-color: orange;
+  --arrow-width: 10px;
+  --arrow-stroke: 2px;
+  box-sizing: border-box;
+  border: 2px solid transparent;
+  border-radius: 20px;
+  color: var(--secondary-color);
+  padding: 1em 1.8em;
+  background: var(--primary-color);
+  display: flex;
+  transition: 0.2s background;
+  align-items: center;
+  gap: 0.6em;
+  font-weight: bold;
+  width: 35%;
+}
+
+button {
+  --primary-color: orange;
+  --secondary-color: #fff;
+  --hover-color:black;
+  --arrow-width: 10px;
+  --arrow-stroke: 2px;
+  box-sizing: border-box;
+  border: 2px solid black;
+  border-radius: 20px;
+  color: var(--secondary-color);
+  padding: 1em 1.8em;
+  background: var(--primary-color);
+  display: flex;
+  transition: 0.2s background;
+  align-items: center;
+  gap: 0.6em;
+  font-weight: bold;
+  width: 35%;
+}
+
+button .arrow-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+button .arrow {
+  margin-top: 1px;
+  width: var(--arrow-width);
+  background: var(--primary-color);
+  height: var(--arrow-stroke);
+  position: relative;
+  transition: 0.2s;
+}
+
+button .arrow::before {
+  content: "";
+  box-sizing: border-box;
+  position: absolute;
+  border: solid var(--secondary-color);
+  border-width: 0 var(--arrow-stroke) var(--arrow-stroke) 0;
+  display: inline-block;
+  top: -3px;
+  right: 3px;
+  transition: 0.2s;
+  padding: 3px;
+  transform: rotate(-45deg);
+}
+
+button:hover {
+  background-color: var(--hover-color);
+}
+
+button:hover .arrow {
+  background: var(--secondary-color);
+}
+
+button:hover .arrow:before {
+  right: 0;
+}
