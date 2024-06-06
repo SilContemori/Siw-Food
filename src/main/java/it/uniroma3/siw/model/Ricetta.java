@@ -1,5 +1,6 @@
 package it.uniroma3.siw.model;
 
+import java.util.Base64;
 import java.util.List;
 import java.util.Objects;
 import jakarta.persistence.*;
@@ -19,8 +20,27 @@ public class Ricetta {
 	private String tipologia; //se primo,secondo,contorno,dolce
 	@ManyToOne
 	private Cuoco cuoco;
+	
 	@ManyToMany
 	private List<Ingrediente> ingredienti;
+
+	@Lob
+	@Column
+	private byte[] imageData;
+	
+
+	public String generateBase64Image() {
+		return Base64.getEncoder().encodeToString(this.imageData);
+	}
+
+	public byte[] getImageData() {
+		return imageData;
+	}
+	public void setImageData(byte[] imageData) {
+		this.imageData = imageData;
+	}
+
+	
 
 	public String getTipologia() {
 		return tipologia;
@@ -81,6 +101,6 @@ public class Ricetta {
 				&& Objects.equals(tempoPreparazioneTot, other.tempoPreparazioneTot)
 				&& Objects.equals(tipologia, other.tipologia);
 	}
-	
-	
+
+
 }

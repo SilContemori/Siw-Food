@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.multipart.MultipartFile;
+
 import static it.uniroma3.siw.model.Credentials.CUOCO_ROLE;
 import static it.uniroma3.siw.model.Credentials.ADMIN_ROLE;
 import it.uniroma3.siw.model.Credentials;
@@ -73,33 +76,63 @@ public class RicettaController {
 		return "formNewRicetta.html";
 	}
 
-	@PostMapping("/ricetta")
-	public String newRicetta(@Valid @ModelAttribute Ricetta ricetta, BindingResult bindingResult, Model model) {
-		UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
-		if(credentials.getRole().equals(CUOCO_ROLE)) {
-			Cuoco c=credentials.getCuoco();
-			//		this.movieValidator.validate(movie, bindingResult);
-			if (!bindingResult.hasErrors()) {
-				ricetta.setCuoco(c);
-				this.ricettaRepository.save(ricetta);
-				c.getRicette().add(ricetta);
-				this.cuocoRepository.save(c); 
-				model.addAttribute("ricetta", ricetta);
-				return "ricetta.html";
-			} else {
-				return "formNewRicetta.html"; 
-			}
-		}else {
-			if (!bindingResult.hasErrors()) {
-				this.ricettaRepository.save(ricetta); 
-				model.addAttribute("ricetta", ricetta);
-				return "ricetta.html";
-			}else {
-				return "formNewRicetta.html"; 
-			}
-		}
-	}
+	//	@PostMapping("/ricetta")
+	//	public String newRicetta(@Valid @ModelAttribute Ricetta ricetta, 
+	////			BindingResult bindingResult, 
+	//			Model model) {
+	//		UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+	//		Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
+	//		if(credentials.getRole().equals(CUOCO_ROLE)) {
+	//			Cuoco c=credentials.getCuoco();
+	//			//		this.movieValidator.validate(movie, bindingResult);
+	////			if (!bindingResult.hasErrors()) {
+	//				ricetta.setCuoco(c);
+	//				this.ricettaRepository.save(ricetta);
+	//				c.getRicette().add(ricetta);
+	//				this.cuocoRepository.save(c); 
+	//				model.addAttribute("ricetta", ricetta);
+	//				return "ricetta.html";
+	////			} else {
+	////				return "formNewRicetta.html"; 
+	////			}
+	//		}else {
+	////			if (!bindingResult.hasErrors()) {
+	//				this.ricettaRepository.save(ricetta); 
+	//				model.addAttribute("ricetta", ricetta);
+	//				return "ricetta.html";
+	////			}else {
+	////				return "formNewRicetta.html"; 
+	////			}
+	//		}
+	//	}
+
+//	@PostMapping(value="/ricetta",consumes = "multipart/form-data")
+//	public String newRicetta(@Valid @ModelAttribute Ricetta ricetta, @RequestPart("file") MultipartFile file,
+//			//			BindingResult bindingResult, 
+//			Model model) {
+//		System.out.println("Dentro la funzione---------------------------------------------------");
+//		UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//		Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
+//		if(credentials.getRole().equals(CUOCO_ROLE)) {
+//			Cuoco c=credentials.getCuoco();
+//			try {
+//				ricetta.setImageData(file.getBytes());
+////				ricettaRepository.save(ricetta);
+//			} catch (Exception e) {
+//				System.out.println("erroreeee");
+//			}
+//			ricetta.setCuoco(c);
+//			this.ricettaRepository.save(ricetta);
+//			c.getRicette().add(ricetta);
+//			this.cuocoRepository.save(c); 
+//			model.addAttribute("ricetta", ricetta);
+//			return "ricetta.html";
+//		}else {
+//			this.ricettaRepository.save(ricetta); 
+//			model.addAttribute("ricetta", ricetta);
+//			return "ricetta.html";
+//		}
+//	}
 
 	/*GET PAGINA CON LISTA RICETTE MODIFICABILI*/
 	@GetMapping("/admin/ricette")
