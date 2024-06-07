@@ -1,8 +1,11 @@
 package it.uniroma3.siw.model;
 
-import java.util.Base64;
+
 import java.util.List;
 import java.util.Objects;
+
+import org.apache.tomcat.util.codec.binary.Base64;
+
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 @Entity
@@ -30,7 +33,8 @@ public class Ricetta {
 	
 
 	public String generateBase64Image() {
-		return Base64.getEncoder().encodeToString(this.imageData);
+        return Base64.encodeBase64String(this.imageData);
+
 	}
 
 	public byte[] getImageData() {

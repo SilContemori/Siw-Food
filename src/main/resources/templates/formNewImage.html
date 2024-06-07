@@ -44,33 +44,12 @@
 	<div class="body">
 		<div class="wrapper">
 			<h1>Aggiungi una Immagine</h1>
-			<form th:action="@{/ricetta}" method="POST" th:object="${ricetta}" enctype="multipart/form-data">
-		  		<div th:if="${#fields.hasGlobalErrors()}">
-		  			<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p> 
-		  		</div>
-				<span><input class="prova" type="file" placeholder="file" required /></span>
-<!--				<div>-->
-<!--					<span><input class="prova" type="file" placeholder="file" required /></span>-->
-<!--					<label>Nome:</label> -->
-<!--					<span><input type="text" th:field="${ricetta.nome}" /></span>-->
-<!--				    <span th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}">-->
-<!--				    </span>-->
-<!--					<br>-->
-<!--					<label>Tempo di Preparazione:</label> -->
-<!--					<span><input type="number" th:field="${ricetta.tempoPreparazioneTot}" /></span>-->
-<!--				    <span th:if="${#fields.hasErrors('tempoPreparazioneTot')}" th:errors="*{tempoPreparazioneTot}">-->
-<!--				    </span>-->
-<!--					<br>-->
-<!--					<label>Descrizione:</label> -->
-<!--					<span><input type="text" th:field="${ricetta.descrizione}" /></span>-->
-<!--				    <span th:if="${#fields.hasErrors('descrizione')}" th:errors="*{descrizione}">-->
-<!--				    </span>-->
-<!--					<br>-->
-<!--					<label>Tipologia:</label> -->
-<!--					<span><input type="text" th:field="${ricetta.tipologia}" /></span>-->
-<!--				    <span th:if="${#fields.hasErrors('tipologia')}" th:errors="*{tipologia}">-->
-<!--				    </span>-->
-<!--				</div>-->
+			<form th:action="@{'/newImage' + '/'+${ricetta.id}}" method="POST" th:object="${ricetta}" enctype="multipart/form-data">
+<!--		  		<div th:if="${#fields.hasGlobalErrors()}">-->
+<!--		  			<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p> -->
+<!--		  		</div>-->
+				<span><input name="file" type="file"  accept="image/png , image/jpeg" required  /></span>
+
 				<div>
 					<span><button type="submit">Conferma</button></span>
 				</div>

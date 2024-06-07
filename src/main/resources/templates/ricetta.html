@@ -44,7 +44,9 @@
 		<div style="padding: 20px;">
 			<h2 style="padding-bottom: 20px;">Ricetta</h2>
 			<div class="container">
-				<div class="image"><img style="width: 100%;" src="/images/iconaSiwFood.png">
+				<div class="image">
+					<img th:src="@{'data:image/jpeg;base64,'+${ricetta.generateBase64Image()}}" alt="ricetta immagine" class="image">
+<!--					<img style="width: 100%;" src="/images/iconaSiwFood.png">-->
 			</div>
 			<div th:if="${ricetta}">
 				<h3>Tipologia: </h3>

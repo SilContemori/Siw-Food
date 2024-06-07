@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -61,8 +63,11 @@ public class IngredienteController {
 		return "formNewImage.html";
 	}
 
+
+//	@RequestMapping(value = "/newImage/{idRicetta}" , method = RequestMethod.POST)
 	@PostMapping(value="/newImage/{idRicetta}",consumes = "multipart/form-data")
-	public String newImage(@PathVariable Long idRicetta,@RequestPart("file") MultipartFile file, Model model) {
+	public String newImage(@PathVariable Long idRicetta, @RequestPart("file") MultipartFile file,Model model) {
+		System.out.println("aggiungi immagine......------");
 		Ricetta r=ricettaRepository.findById(idRicetta).orElse(null);
 		//		if(!this.ingredienteRepository.existsByNome(ingrediente.getNome())) {
 		//			r.getIngredienti().add(ingrediente);
@@ -77,6 +82,7 @@ public class IngredienteController {
 
 		this.ricettaRepository.save(r);
 		model.addAttribute("ricetta", r);
+		System.out.println("fatooooooo......------");
 		return "ricetta.html";			
 		//		}else {
 		//			model.addAttribute("ricetta", r);
