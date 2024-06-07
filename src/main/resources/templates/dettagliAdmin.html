@@ -71,13 +71,14 @@
 					<div  class="photos">
 						<li><a class="op" th:href="@{'/formNewRicetta'}">aggiungi ricetta</a></li>
 						<li></li>
-						<li><a class="op"href="#">rimuovi ricetta</a></li>
+						<li><a class="op"href="/admin/ricette">rimuovi ricetta</a></li>
 						<li></li>
 						<li><a class="op"href="/admin/ricette">modifica ricetta</a></li> <!-- manda pagina per selezionare ricetta da modificate-->
 						<li></li>
 						<li><a class="op" th:href="@{'/admin/formNewCuoco'}">aggiungi cuoco</a></li>
 						<li></li>
-						<li><a class="op"href="#">rimuovi cuoco</a></li>
+						<li><a class="op"href="/admin/cuochi">rimuovi cuoco</a></li>
+<!--						<li><a class="op"href="@{'/cuoco'}">rimuovi cuoco</a></li>-->
 <!--						<li th:each="ricetta: ${cuoco.ricette}">-->
 <!--							<img src="/images/iconaSiwFood.png" alt="Utente">-->
 <!--							<a th:href="@{'/ricetta' + '/' + ${ricetta.id}}"-->

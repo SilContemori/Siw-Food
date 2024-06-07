@@ -12,13 +12,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+
 import static it.uniroma3.siw.model.Credentials.CUOCO_ROLE;
+
+import java.util.Optional;
+
 import static it.uniroma3.siw.model.Credentials.ADMIN_ROLE;
 import it.uniroma3.siw.model.Credentials;
 import it.uniroma3.siw.model.Cuoco;
 import it.uniroma3.siw.model.Ricetta;
 import it.uniroma3.siw.repository.CuocoRepository;
 import it.uniroma3.siw.repository.RicettaRepository;
+import it.uniroma3.siw.repository.UserRepository;
 import it.uniroma3.siw.service.CredentialsService;
 import jakarta.validation.Valid;
 
@@ -27,6 +32,7 @@ public class RicettaController {
 	@Autowired private RicettaRepository ricettaRepository;
 	@Autowired private CuocoRepository cuocoRepository;
 	@Autowired private CredentialsService credentialsService;
+	@Autowired private UserRepository userRepository;
 
 	/*GET PAGINA CON LISTA RICETTE*/
 	@GetMapping("/ricetta")
@@ -107,5 +113,43 @@ public class RicettaController {
 		model.addAttribute("ricette",this.ricettaRepository.findAll());
 		return "admin/ricetteModificabili.html";
 	}
+
+	/*GET RIMOZIONE DELLA RICETTA*/
+	@GetMapping("/rimuoviRicetta/{id}")
+	public String removeRicetta(@PathVariable("id") Long id, Model model) {
+		System.out.println("dopo la remove------------------------------------------------------");
+		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
+		Optional<Ricetta> daEliminareOptional = ricettaRepository.findById(id);
+
+		if (daEliminareOptional.isPresent()) {
+			Ricetta daEliminare = daEliminareOptional.get();
+			if (credentials.getRole().equals(CUOCO_ROLE)) {
+				Cuoco c = daEliminare.getCuoco();
+				if (c!= null) {
+					c.getRicette().remove(daEliminare);
+					daEliminare.setCuoco(null);
+				}
+				ricettaRepository.delete(daEliminare);
+				cuocoRepository.save(c);
+				model.addAttribute("cuoco", c);
+				return "dettagliCuoco.html";
+			} else {
+				if (daEliminare.getCuoco()!= null) {
+					Cuoco c = daEliminare.getCuoco();
+					c.getRicette().remove(daEliminare);
+					daEliminare.setCuoco(null);
+				}
+				ricettaRepository.delete(daEliminare);
+				model.addAttribute("ricette", ricettaRepository.findAll());
+				return "ricette.html";
+			}
+		} else {
+			return "errore.html";
+		}
+	}
+
+
+
 
 }

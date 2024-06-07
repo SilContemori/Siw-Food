@@ -123,6 +123,12 @@ public class AuthenticationController {
 		return "sceltaRuolo.html";
 	}
 	
+	/*GET DELLA PAGINA DI ERRORE*/
+	@GetMapping("/errore")
+	public String getErrore() {
+		return "errore.html";
+	}
+	
 	
 	
 }

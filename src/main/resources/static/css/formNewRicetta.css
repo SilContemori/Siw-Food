@@ -15,56 +15,60 @@ body{
 }
 
 .container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-        }
-       .card {
-            width: 100%;
-            max-width: 400px; /* Adegua questa misura secondo necessità */
-            background-color: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            padding: 24px;
-        }
-       .card h2 {
-            font-size: 32px;
-            font-weight: bold;
-            color: #2d3748;
-            margin-bottom: 16px;
-        }
-       .form-container {
-            display: flex;
-            flex-direction: column;
-        }
-       .input-field {
-            background-color: #f7fafc;
-            color: #374151;
-/*            border: none;*/
-			border: solid 2px orange;
-            border-radius: 9999px;
-            padding: 8px;
-            margin-bottom: 16px;
-            outline: none;
-        }
-       .input-field:focus {
-            background-color: #e5e7eb;
-            box-shadow: 0 0 0 2px rgba(23, 201, 138, 0.25);
-        }
-       .submit-button {
-            background-image: linear-gradient(to right,orange, orange);
-            color: white;
-            font-weight: bold;
-            padding: 8px 16px;
-            border-radius: 9999px;
-            margin-top: 16px;
-            cursor: pointer;
-            outline: none;
-        }
-       .submit-button:hover {
-            background-image: linear-gradient(to right, black, black);
-        }
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+.card {
+	width: 100%;
+	max-width: 400px; 
+	background-color: transparent;
+	border-radius: 12px;
+	box-shadow: 0 4px 6px orange;
+	padding: 24px;
+}
+.card h2 {
+    font-size: 32px;
+    font-weight: bold;
+    color: black;
+    margin-bottom: 16px;
+}
+.form-container {
+    display: flex;
+    flex-direction: column;
+}
+.input-field {
+	background-color: transparent;
+	color: #374151;
+	/*border: none;*/
+	background-color: transparent;
+	border: solid 1px black;
+	border-radius: 9999px;
+	padding: 8px;
+	margin-bottom: 16px;
+	outline: none;
+}
+.input-field:focus {
+    background-color: transparent;
+    box-shadow: 0 0 0 2px orange;
+}
+.submit-button {
+/*    background-image: linear-gradient(to right,transparent, transparent);*/
+	background-color: transparent;
+    color: black;
+    font-weight: bold;
+    padding: 8px 16px;
+    border-radius: 9999px;
+    margin-top: 16px;
+    cursor: pointer;
+    outline: none;
+    border: 2px solid orange;
+}
+
+.submit-button:hover {
+    background-image: linear-gradient(to right,orange, orange);
+}
 
 /*.wrapper{*/
 /*	width: 420px;*/
@@ -78,7 +82,7 @@ body{
 /*.wrapper h1{*/
 /*	font-size: 36px;*/
 /*	text-align: center;*/
-}
+/*}*/
 
 /*.remember label input{*/
 /*	accent-color:black;*/

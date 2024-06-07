@@ -1,6 +1,8 @@
 package it.uniroma3.siw.controller;
 import static it.uniroma3.siw.model.Credentials.CUOCO_ROLE;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -18,9 +20,11 @@ import it.uniroma3.siw.model.Credentials;
 import it.uniroma3.siw.model.Cuoco;
 import it.uniroma3.siw.model.Ricetta;
 import it.uniroma3.siw.repository.CuocoRepository;
+import it.uniroma3.siw.repository.RicettaRepository;
 import it.uniroma3.siw.repository.UserRepository;
 import it.uniroma3.siw.service.CredentialsService;
 import jakarta.validation.Valid;
+import static it.uniroma3.siw.model.Credentials.ADMIN_ROLE;
 
 
 @Controller
@@ -42,6 +46,13 @@ public class CuocoController {
 	public String getCuoco(@PathVariable Long id,Model model){
 		model.addAttribute("cuoco", this.cuocoRepository.findById(id).get());
 		return "cuoco.html";
+	}
+	
+	/*GET DEI CUOCHI ELIMINABILI*/
+	@GetMapping("/admin/cuochi")
+	public String getCuochiEliminabili(Model model){
+		model.addAttribute("cuochi",this.cuocoRepository.findAll());
+		return "admin/cuochiModificabili.html";
 	}
 
 	/*GET DELLA PAGINA DESCRITTIVA DELL'UTENTE*/
@@ -86,6 +97,36 @@ public class CuocoController {
 			return "admin/formNewCuoco.html"; 
 		}
 
+	}
+
+	/*GET RIMOZIONE DEL CUOCO E TUTTE LE SUE RICETTE*/
+	@GetMapping("/admin/rimuoviCuoco/{id}")
+	public String removeRicetta(@PathVariable("id") Long id, Model model) {
+		System.out.println("dopo la remove------------------------------------------------------");
+		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
+		Optional<Cuoco> daEliminareOptional = cuocoRepository.findById(id);
+
+		if (daEliminareOptional.isPresent()) {
+			Cuoco daEliminare = daEliminareOptional.get();
+//			if (credentials.getRole().equals(ADMIN_ROLE)) {
+				//				Cuoco c = daEliminare.getCuoco();
+				//				if (c!= null) {
+				//					c.getRicette().remove(daEliminare);
+				//					daEliminare.setCuoco(null);
+				//				}
+
+				daEliminare.setRicette(null);
+				cuocoRepository.delete(daEliminare);
+				//				ricettaRepository.save(ricettaRepository.findAll());
+				//				cuocoRepository.save(c);
+				//				model.addAttribute("cuoco", c);
+				model.addAttribute("user", this.userRepository.findById(credentials.getUser().getId()).get());
+				return "dettagliAdmin.html";
+//			} 
+		} else {
+			return "errore.html";
+		}
 	}
 
 

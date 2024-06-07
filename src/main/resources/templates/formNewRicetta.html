@@ -47,31 +47,25 @@
 			    <div class="card">
 			        <h2>Aggiungi una Ricetta</h2>
 			        <form class="form-container" th:action="@{/ricetta}" method="POST" th:object="${ricetta}">
+						<div th:if="${#fields.hasGlobalErrors()}">-->
+				  			<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p> 
+				  		</div>
 						<input type="text" class="input-field"  th:field="${ricetta.nome}"placeholder="Nome">
+<!--						<span th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span>-->
 						<input type="number" class="input-field"th:field="${ricetta.tempoPreparazioneTot}"placeholder="Tempo di Preparazione">
+<!--						<span th:if="${#fields.hasErrors('tempoPreparazioneTot')}" th:errors="*{tempoPreparazioneTot}"></span>-->
 						<input type="text" 	class="input-field"th:field="${ricetta.tipologia}"placeholder="Tipologia">
-				            <textarea name="cover_letter" class="input-field" placeholder="Descrizione"></textarea>
-			            <input type="file" class="input-field" placeholder="Copertina">
+<!--						<span th:if="${#fields.hasErrors('tipologia')}" th:errors="*{tipologia}">-->
+				        <textarea name="cover_letter" class="input-field" placeholder="Descrizione" th:field="${ricetta.descrizione}">
+<!--							<input type="text" th:field="${ricetta.descrizione}" />-->
+<!--							<span th:if="${#fields.hasErrors('descrizione')}" th:errors="*{descrizione}">-->
+						</textarea>
+<!--			            <input type="file" placeholder="Copertina">-->
 			            <button type="submit" class="submit-button">Conferma</button>
 			        </form>
 			    </div>
 			</div>
 			
-<!--			<div class="flex flex-col items-center justify-center h-screen">-->
-<!--			  <div class="w-full max-w-md bg-white rounded-lg shadow-md p-6">-->
-<!--			    <h2 class="text-2xl font-bold text-gray-900 mb-4">Aggiungi una Ricetta</h2>-->
-<!--				<form class="flex flex-col" th:action="@{/ricetta}" method="POST" th:object="${ricetta}">-->
-<!--			      <input type="text" class="bg-gray-100 text-gray-900 border-0 rounded-md p-2 mb-4 focus:bg-gray-200 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150" placeholder="Full Name">-->
-<!--			      <input type="email" class="bg-gray-100 text-gray-900 border-0 rounded-md p-2 mb-4 focus:bg-gray-200 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150" placeholder="Email">-->
-<!--			      <input type="text" class="bg-gray-100 text-gray-900 border-0 rounded-md p-2 mb-4 focus:bg-gray-200 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150" placeholder="Phone Number">-->
-<!--			      <input type="text" class="bg-gray-100 text-gray-900 border-0 rounded-md p-2 mb-4 focus:bg-gray-200 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150" placeholder="LinkedIn Profile URL">-->
-<!--			      <textarea name="cover_letter" class="bg-gray-100 text-gray-900 border-0 rounded-md p-2 mb-4 focus:bg-gray-200 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150" placeholder="Cover Letter"></textarea>-->
-<!--			      <input type="file" class="bg-gray-100 text-gray-900 border-0 rounded-md p-2 mb-4 focus:bg-gray-200 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150" placeholder="Resume">-->
-			
-<!--			      <button type="submit" class="bg-gradient-to-r from-indigo-500 to-blue-500 text-white font-bold py-2 px-4 rounded-md mt-4 hover:bg-indigo-600 hover:to-blue-600 transition ease-in-out duration-150">Apply</button>-->
-<!--			    </form>-->
-<!--			  </div>-->
-<!--			</div>-->
 
 <!--			<form th:action="@{/ricetta}" method="POST" th:object="${ricetta}">-->
 <!--		  		<div th:if="${#fields.hasGlobalErrors()}">-->
