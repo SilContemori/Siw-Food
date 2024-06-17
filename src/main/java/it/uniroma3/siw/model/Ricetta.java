@@ -2,6 +2,9 @@ package it.uniroma3.siw.model;
 
 import java.util.List;
 import java.util.Objects;
+
+import org.apache.tomcat.util.codec.binary.Base64;
+
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 @Entity
@@ -13,15 +16,35 @@ public class Ricetta {
 	private String nome;
 	@NotNull
 	private Float tempoPreparazioneTot;//min
-	@NotNull
+	@Column(length=2000)
 	private String descrizione;
 	@NotNull
 	private String tipologia; //se primo,secondo,contorno,dolce
+	
+	@OneToMany
+	private List<Image> images;
+	
+	@OneToOne
+	private Image copertina;
+	
 	@ManyToOne
 	private Cuoco cuoco;
+	
 	@ManyToMany
 	private List<Ingrediente> ingredienti;
 
+	public List<Image> getImages() {
+		return images;
+	}
+	public void setImages(List<Image> images) {
+		this.images = images;
+	}
+	public Image getCopertina() {
+		return copertina;
+	}
+	public void setCopertina(Image copertina) {
+		this.copertina = copertina;
+	}
 	public String getTipologia() {
 		return tipologia;
 	}

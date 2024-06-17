@@ -47,12 +47,11 @@
 				<div id="cardContainer" style="margin-left: 20px;">
 						<div style="display: flex;flex-direction: column;align-items: center;" th:each="cuoco: ${cuochi}" >
 					       <div  class="card">
-								<a th:href="@{'/cuoco' + '/' + ${cuoco.id}}">
-									<img style="width: 100%;box-shadow: 0 2px 4px rgba(0,0,0,0.1);border-radius: 2%;"th:src="@{'data:image/jpeg;base64,'+${cuoco.copertina.generateBase64Image()}}" alt="ricetta immagine">
-								</a>
+							<img style="width: 100%;box-shadow: 0 2px 4px rgba(0,0,0,0.1);border-radius: 2%;"th:src="@{'data:image/jpeg;base64,'+${cuoco.copertina.generateBase64Image()}}" alt="ricetta immagine">
+<!--								<img style="width: 100%;box-shadow: 0 2px 4px rgba(0,0,0,0.1);border-radius: 2%;" src="/images/iconaSiwFood.png" alt="ricetta immagine">-->
 							</div>
-							<a th:href="@{'/cuoco' + '/' + ${cuoco.id}}"
-								th:text="${cuoco.nome}+ ' ' +${cuoco.cognome}" style="padding: 5px;text-transform: uppercase;color: black;"></a>
+							<a th:href="@{'/admin'+'/'+${ricetta.id}+'/'+${cuoco.id}}"
+								th:text="${cuoco.nome}" style="padding: 5px;text-transform: uppercase;color: black;"></a>
 					   </div>
 				  </div>
 			  </div>

@@ -3,13 +3,11 @@
     height: 60px;	
 }
 
-/*Personalizza la larghezza della barra di scorrimento*/
 ::-webkit-scrollbar {
     width: 10px; 
     height: 10px;
 }
 
-/* Personalizza l'aspetto del tracciato della barra di scorrimento */
 ::-webkit-scrollbar-track {
     background-color: white; 
 }
@@ -26,10 +24,131 @@
     flex-direction: row;  
     flex-wrap: wrap; 
     gap: 1rem;
-/*    background-color: blue;*/
 }
 
  .image{
 	width: 150px;
  }
+ 
+ .contenitoreCopertinaDescrizione{
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+ }
+ 
+ .descrizione{
+	padding-left: 20px;
+	padding-bottom: 20px;
+	padding-right: 20px;
+	display: flex;
+	flex-direction: column;
+ }
+ 
+ .riga{
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+ }
+
+.main-container {
+    display: flex; 
+    justify-content: space-between;
+    align-items: flex-start; 
+    padding: 20px; 
+}
+
+#riquadro {
+    flex: 1; 
+    margin-right: 20px; 
+}
+
+.colonna {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 5px;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-top: 20px;
+}
+
+.elimina{
+	text-transform: uppercase;
+	color: orange;
+}
+
+#cardContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px;
+    padding: 10px;
+}
+
+.card {
+	height: 150px;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-sizing: border-box;
+    margin: 5px; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card img {
+    width: 100%;
+}
+
+.btn:link,
+.btn:visited {
+ text-transform: uppercase;
+ width:155px;
+ text-decoration: none;
+ color: orange;
+ padding: 10px 30px;
+ border: 1px solid;
+ border-radius: 1000px;
+ display: inline-block;
+ transition: all .2s;
+ position: relative;
+}
+
+.btn:hover {
+ transform: translateY(-5px);
+ box-shadow: 0 10px 20px rgba(27, 27, 27, .5);
+}
+
+.btn:active {
+ transform: translateY(-3px);
+}
+
+.btn::after {
+ content: "";
+ display: inline-block;
+ height: 100%;
+ width: 100%;
+ border-radius: 100px;
+ top: 0;
+ left: 0;
+ position: absolute;
+ z-index: -1;
+ transition: all .3s;
+}
+
+.btn:hover::after {
+ background-color: orange;
+ transform: scaleX(1.4) scaleY(1.5);
+ opacity: 0;
+}
+
+
+@media screen and (min-width: 600px) {
+ .contenitoreCopertinaDescrizione{
+	flex-direction: row;
+
+ }
+}
+
 

@@ -44,13 +44,25 @@
 	<div class="padding" style="padding: 40px;">
 			<h1 style="padding-bottom: 10px;">Ricette</h1>
 				<div th:if="${ricette==null || ricette.isEmpty()}">Non ci sono ricette nel sistema</div>
-				<ul class="containerFoto">	
-					<li th:each="ricetta: ${ricette}">
-						<div class="image"><img src="/images/iconaSiwFood.png" width="100%"></div>	
+				<div id="cardContainer" style="margin-left: 20px;">
+						<div style="display: flex;flex-direction: column;align-items: center;" th:each="ricetta: ${ricette}" >
+					       <div  class="card">
+								<a th:href="@{'/ricetta' + '/' + ${ricetta.id}}">
+									<img th:src="@{'data:image/jpeg;base64,'+${ricetta.copertina.generateBase64Image()}}" alt="ricetta immagine">
+								</a>
+							</div>
 							<a th:href="@{'/ricetta' + '/' + ${ricetta.id}}"
-								th:text="${ricetta.nome}" style="padding: 20px;"></a>
-					</li>						
-				</ul>
+								th:text="${ricetta.nome}" style="padding: 5px;text-transform: uppercase; color:black;"></a>
+					   </div>
+				  </div>
+<!--				<ul class="containerFoto">	-->
+<!--					<li th:each="ricetta: ${ricette}">-->
+<!--						<img th:src="@{'data:image/jpeg;base64,'+${ricetta.copertina.generateBase64Image()}}" alt="ricetta immagine">-->
+<!--						<div class="image"><img src="/images/iconaSiwFood.png" width="100%"></div>	-->
+<!--							<a th:href="@{'/ricetta' + '/' + ${ricetta.id}}"-->
+<!--								th:text="${ricetta.nome}" style="padding: 20px;"></a>-->
+<!--					</li>						-->
+<!--				</ul>-->
 <!--			<section>-->
 <!--				<div class="container-botton"></div>-->
 <!--				<div class="footer-container"></div>-->

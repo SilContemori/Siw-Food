@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Rimuovi Cuoco</title>
+		<title>Cuochi</title>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" href="/css/global.css">
@@ -44,17 +44,15 @@
 	<div class="padding" style="padding: 40px;">
 			<h1 style="padding-bottom: 10px;">Cuochi</h1>
 				<div th:if="${cuochi==null || cuochi.isEmpty()}">Non ci sono cuochi nel sistema</div>
-				<ul class="containerFoto">	
-					<li th:each="cuoco: ${cuochi}">
-						<div class="image"><img src="/images/iconaSiwFood.png" width="100%"></div>	
+				<div id="cardContainer" style="margin-left: 20px;">
+						<div style="display: flex;flex-direction: column;align-items: center;" th:each="cuoco: ${cuochi}" >
+					       <div  class="card">
+								<img style="width: 100%;box-shadow: 0 2px 4px rgba(0,0,0,0.1);border-radius: 2%;" src="/images/iconaSiwFood.png" alt="ricetta immagine">
+							</div>
 							<a th:href="@{'/admin/rimuoviCuoco/' + ${cuoco.id}}"
-								th:text="${cuoco.nome}" style="padding: 20px;"></a>
-					</li>						
-				</ul>
-<!--			<section>-->
-<!--				<div class="container-botton"></div>-->
-<!--				<div class="footer-container"></div>-->
-<!--			</section>-->
-			
+								th:text="${cuoco.nome}" style="padding: 5px;text-transform: uppercase;color: black;"></a>
+					   </div>
+				  </div>
+			  </div>
 	</body>
 </html>

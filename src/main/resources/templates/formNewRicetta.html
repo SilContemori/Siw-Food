@@ -46,57 +46,33 @@
 			<div class="container">
 			    <div class="card">
 			        <h2>Aggiungi una Ricetta</h2>
-			        <form class="form-container" th:action="@{/ricetta}" method="POST" th:object="${ricetta}">
+			        <form class="form-container" th:action="@{/ricetta}" method="POST" th:object="${ricetta}" enctype="multipart/form-data">
 						<div th:if="${#fields.hasGlobalErrors()}">-->
 				  			<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p> 
 				  		</div>
 						<input type="text" class="input-field"  th:field="${ricetta.nome}"placeholder="Nome">
 <!--						<span th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span>-->
 						<input type="number" class="input-field"th:field="${ricetta.tempoPreparazioneTot}"placeholder="Tempo di Preparazione">
-<!--						<span th:if="${#fields.hasErrors('tempoPreparazioneTot')}" th:errors="*{tempoPreparazioneTot}"></span>-->
+						<span th:if="${#fields.hasErrors('tempoPreparazioneTot')}" th:errors="*{tempoPreparazioneTot}"></span>
 						<input type="text" 	class="input-field"th:field="${ricetta.tipologia}"placeholder="Tipologia">
 <!--						<span th:if="${#fields.hasErrors('tipologia')}" th:errors="*{tipologia}">-->
-				        <textarea name="cover_letter" class="input-field" placeholder="Descrizione" th:field="${ricetta.descrizione}">
-<!--							<input type="text" th:field="${ricetta.descrizione}" />-->
-<!--							<span th:if="${#fields.hasErrors('descrizione')}" th:errors="*{descrizione}">-->
-						</textarea>
-<!--			            <input type="file" placeholder="Copertina">-->
+				        <textarea name="cover_letter" class="input-field" placeholder="Descrizione" th:field="${ricetta.descrizione}"></textarea>
+						<label for="file-upload" class="custom-file-upload">
+						    Scegli File
+						</label>
+						<span><input name="file" type="file" id="file-upload" accept="image/png , image/jpeg" required style="display:none;" onchange="updateFileName(this)" /></span>
 			            <button type="submit" class="submit-button">Conferma</button>
 			        </form>
 			    </div>
 			</div>
-			
-
-<!--			<form th:action="@{/ricetta}" method="POST" th:object="${ricetta}">-->
-<!--		  		<div th:if="${#fields.hasGlobalErrors()}">-->
-<!--		  			<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p> -->
-<!--		  		</div>-->
-<!--				<div>-->
-<!--					<label>Nome:</label> -->
-<!--					<span style="border-radius: 10%;"><input type="text" th:field="${ricetta.nome}" /></span>-->
-<!--				    <span th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}">-->
-<!--				    </span>-->
-<!--					<br>-->
-<!--					<label>Tempo di Preparazione:</label> -->
-<!--					<span><input type="number" th:field="${ricetta.tempoPreparazioneTot}" /></span>-->
-<!--				    <span th:if="${#fields.hasErrors('tempoPreparazioneTot')}" th:errors="*{tempoPreparazioneTot}">-->
-<!--				    </span>-->
-<!--					<br>-->
-<!--					<label>Descrizione:</label> -->
-<!--					<span><input type="text" th:field="${ricetta.descrizione}" /></span>-->
-<!--				    <span th:if="${#fields.hasErrors('descrizione')}" th:errors="*{descrizione}">-->
-<!--				    </span>-->
-<!--					<br>-->
-<!--					<label>Tipologia:</label> -->
-<!--					<span><input type="text" th:field="${ricetta.tipologia}" /></span>-->
-<!--				    <span th:if="${#fields.hasErrors('tipologia')}" th:errors="*{tipologia}">-->
-<!--				    </span>-->
-<!--				</div>-->
-<!--				<div>-->
-<!--					<span><button type="submit">Conferma</button></span>-->
-<!--				</div>-->
-<!--			</form>-->
 		</div>
 	</div>	
 	</body>
+	<script>
+		function updateFileName(input) {
+		    var fileName = input.files[0].name;
+		    var label = document.querySelector(".custom-file-upload");
+		    label.textContent = fileName;
+		}
+	</script>
 </html>

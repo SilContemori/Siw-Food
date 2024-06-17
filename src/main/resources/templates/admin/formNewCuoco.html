@@ -5,7 +5,7 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" href="/css/global.css">
-		<link rel="stylesheet" href="/css/ricette.css">
+		<link rel="stylesheet" href="/css/formNewRicetta.css">
 		<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 	</head>
 	<body>
@@ -40,36 +40,71 @@
         </ul>
     </header>
 	<!--CORPO-->
-	<div class="container-nav"></div>
-	<h1>Aggiungi una Ricetta</h1>
-		<form th:action="@{/admin/cuoco}" method="POST" th:object="${cuoco}">
-	  		<div th:if="${#fields.hasGlobalErrors()}">
-	  			<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p> 
-	  		</div>
+<!--	<div class="container-nav"></div>-->
+	<div class="body">
+		<div class="wrapper">
+			<div class="container">
+			    <div class="card">
+			        <h2>Aggiungi un Cuoco</h2>
+			        <form class="form-container"th:action="@{/admin/cuoco}" method="POST" th:object="${cuoco}" enctype="multipart/form-data">
+						<div th:if="${#fields.hasGlobalErrors()}">
+				  			<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p> 
+				  		</div>
+						<input  type="text" class="input-field"  th:field="${cuoco.nome}"placeholder="Nome">
+						<input type="text" 	class="input-field"th:field="${cuoco.cognome}"placeholder="Cognome">
+						<input type="date" 	class="input-field"th:field="${cuoco.dataDiNascita}"placeholder="Data di Nascita">
+						<span th:if="${#fields.hasErrors('dataDiNascita')}" th:errors="*{dataDiNascita}"></span>
+						<input type="text" 	class="input-field"th:field="${cuoco.email}"placeholder="Email">
+						<textarea name="cover_letter" class="input-field" placeholder="Descrizione" th:field="${cuoco.descrizione}"></textarea>
+						<label for="file-upload" class="custom-file-upload">
+						    Scegli File
+						</label>
+						<span><input name="file" type="file" id="file-upload" accept="image/png , image/jpeg" required style="display:none;" onchange="updateFileName(this)" /></span>
+			            <button type="submit" class="submit-button">Conferma</button>
+			        </form>
+			    </div>
+			</div>
+		</div>
+	</div>	
+
+	
+<!--	<h1>Aggiungi una Cuoco</h1>-->
+<!--		<form th:action="@{/admin/cuoco}" method="POST" th:object="${cuoco}">-->
+<!--	  		<div th:if="${#fields.hasGlobalErrors()}">-->
+<!--	  			<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p> -->
+<!--	  		</div>-->
 			
-			<div>
-				<label>Nome:</label> 
-				<span><input type="text" th:field="${cuoco.nome}" /></span>
-			    <span th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}">
-			    </span>
-				<label>Cognome:</label> 
-				<span><input type="text" th:field="${cuoco.cognome}" /></span>
-			    <span th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}">
-			    </span>
-				<label>Data di Nascita:</label> 
-				<span><input type="date" name="dataDiNascita" placeholder="gg/mm/aaaa" required th:field="${cuoco.dataDiNascita}" /></span>
-			    <span th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}">
-			    </span>
-				<label>Email:</label> 
-				<span><input type="text" th:field="${cuoco.email}" /></span>
-			    <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}">
-			    </span>
-			</div>
-			<div>
-				<span><button type="submit">Conferma</button></span>
-			</div>
-		</form>
+<!--			<div>-->
+<!--				<label>Nome:</label> -->
+<!--				<span><input type="text" th:field="${cuoco.nome}" /></span>-->
+<!--			    <span th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}">-->
+<!--			    </span>-->
+<!--				<label>Cognome:</label> -->
+<!--				<span><input type="text" th:field="${cuoco.cognome}" /></span>-->
+<!--			    <span th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}">-->
+<!--			    </span>-->
+<!--				<label>Data di Nascita:</label> -->
+<!--				<span><input type="date" name="dataDiNascita" placeholder="gg/mm/aaaa" required th:field="${cuoco.dataDiNascita}" /></span>-->
+<!--			    <span th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}">-->
+<!--			    </span>-->
+<!--				<label>Email:</label> -->
+<!--				<span><input type="text" th:field="${cuoco.email}" /></span>-->
+<!--			    <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}">-->
+<!--			    </span>-->
+<!--			</div>-->
+<!--			<div>-->
+<!--				<span><button type="submit">Conferma</button></span>-->
+<!--			</div>-->
+<!--		</form>-->
 
 			
 	</body>
+	
+	<script>
+		function updateFileName(input) {
+		    var fileName = input.files[0].name;
+		    var label = document.querySelector(".custom-file-upload");
+		    label.textContent = fileName;
+		}
+	</script>
 </html>

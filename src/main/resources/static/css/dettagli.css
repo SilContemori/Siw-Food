@@ -27,11 +27,11 @@ a{
 .pippo{
 	height:300px;
 /*	height: 100px;*/
-	width: 100%;
+/*	width: 100%;*/
 /*	border: 2px solid orange;*/
 	object-fit: cover;
-/*	background: url("../images/dettagliCuoco.png") no-repeat 50% 70% / cover;*/
-	background-color:rgb(254, 121, 1);
+	background: url("../images/backgroundImage2.jpg") no-repeat 50% 70% / cover;
+/*	background-color:rgb(254, 121, 1);*/
 	min-height: calc(100px + 15vw);
 /*	background-color: red;*/
 }
@@ -132,9 +132,11 @@ a{
 
 .nav{
 	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	flex-direction: column;
+    justify-content: flex-end;
+/*	display: flex;*/
+/*	align-items: center;*/
+/*	justify-content: space-between;*/
+/*	flex-direction: column;*/
 }
 
 .nav ul{
@@ -158,18 +160,7 @@ text-transform: uppercase;
   color: #1d1d1d;
   font-weight: 600;
 }
-/*.header__wrapper .cols__container .right__col nav button {*/
-/*  background: #0091ff;*/
-/*  color: #fff;*/
-/*  border: none;*/
-/*  padding: 10px 25px;*/
-/*  border-radius: 4px;*/
-/*  cursor: pointer;*/
-/*  margin-top: 20px;*/
-/*}*/
-/*.header__wrapper .cols__container .right__col nav button:hover {*/
-/*  opacity: 0.8;*/
-/*}*/
+
 .header__wrapper .cols__container .right__col .photos {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
@@ -180,6 +171,65 @@ text-transform: uppercase;
   display: block;
 /*  height: 100%;*/
   object-fit: cover;
+}
+
+.card {
+	height: 150px;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-sizing: border-box;
+    margin: 5px; 
+    display: flex;
+/*    flex-direction: column;*/
+    justify-content: center;
+    align-items: center;
+}
+
+.card img {
+    width: 100%;
+}
+
+.btn:link,
+.btn:visited {
+ text-transform: uppercase;
+ width:155px;
+ text-decoration: none;
+ color: orange;
+ padding: 10px 30px;
+ border: 1px solid;
+ border-radius: 1000px;
+ display: inline-block;
+ transition: all .2s;
+ position: relative;
+}
+
+.btn:hover {
+ transform: translateY(-5px);
+ box-shadow: 0 10px 20px rgba(27, 27, 27, .5);
+}
+
+.btn:active {
+ transform: translateY(-3px);
+}
+
+.btn::after {
+ content: "";
+ display: inline-block;
+ height: 100%;
+ width: 100%;
+ border-radius: 100px;
+ top: 0;
+ left: 0;
+ position: absolute;
+ z-index: -1;
+ transition: all .3s;
+}
+
+.btn:hover::after {
+ background-color: orange;
+ transform: scaleX(1.4) scaleY(1.5);
+ opacity: 0;
 }
 
 
@@ -206,6 +256,6 @@ text-transform: uppercase;
  .photos {
     height: 365px;
 
+  }
 }
 
-}

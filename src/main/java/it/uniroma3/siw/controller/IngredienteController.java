@@ -29,6 +29,7 @@ public class IngredienteController {
 	@Autowired RicettaRepository ricettaRepository;
 	@Autowired CredentialsService credentialsService;
 	
+	
 	/*GET  E POST PER LA FORM NEW INGREDIENTE*/
 	@GetMapping(value="/formNewIngrediente/{idRicetta}")
 	public String formNewIngrediente(@PathVariable Long idRicetta,Model model) {
@@ -40,16 +41,39 @@ public class IngredienteController {
 	@PostMapping("/newIngrediente/{idRicetta}")
 	public String newIngrediente(@PathVariable Long idRicetta,@Valid @ModelAttribute Ingrediente ingrediente, BindingResult bindingResult, Model model) {
 		Ricetta r=ricettaRepository.findById(idRicetta).orElse(null);
-		if(!this.ingredienteRepository.existsByNome(ingrediente.getNome())) {
+		boolean b=false;
+		for(Ingrediente i:r.getIngredienti()) {
+			if(i.equals(ingrediente)) {
+				b=true;
+			}
+		}
+		if(!b) {
 			r.getIngredienti().add(ingrediente);
 			this.ingredienteRepository.save(ingrediente);
 			this.ricettaRepository.save(r);
-			model.addAttribute("ricetta", r);
-			return "ricetta.html";			
+			return "redirect:/ricetta/"+r.getId();
 		}else {
-			model.addAttribute("ricetta", r);
-			return "ricetta.html";
+			return "redirect:/ricetta/"+r.getId();
 		}
+	}
+	
+	/*GET RIMUOVI INGREDIENTE*/
+	@GetMapping("/rimuoviIngrediente/{idRicetta}/{idIngrediente}")
+	public String rimuoviIngrediente(@PathVariable Long idRicetta,@PathVariable Long idIngrediente,Model model) {
+		Ingrediente i=ingredienteRepository.findById(idIngrediente).orElse(null);
+		Ricetta r=ricettaRepository.findById(idRicetta).orElse(null);
+		int lunghezza=0;
+		for(Ricetta ric: i.getRicette()) {
+			lunghezza++;
+		}
+		r.getIngredienti().remove(i);
+		if(i.getRicette()!=null) {
+			if(lunghezza==1 && i.getRicette().get(0).equals(r)) {
+				ingredienteRepository.delete(i);
+			}
+		}		
+		ricettaRepository.save(r);
+		return "redirect:/ricetta/"+r.getId();
 	}
 
 }

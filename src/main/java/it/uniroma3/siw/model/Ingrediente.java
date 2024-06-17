@@ -13,9 +13,19 @@ public class Ingrediente {
 	private String nome;
 	@NotNull
 	private int quantita;
+	
+	private String misura;
 	@ManyToMany(mappedBy="ingredienti")
 	private List<Ricetta> ricette;
 	
+	public String getMisura() {
+		return misura;
+	}
+
+	public void setMisura(String misura) {
+		this.misura = misura;
+	}
+
 	public Long getId() {
 		return id;
 	}

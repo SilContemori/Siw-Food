@@ -41,31 +41,92 @@
     </header>
 	<!--CORPO-->
 	<div class="container-nav"></div>
-	<h2 style="padding: 20px;">Dettagli Cuoco</h2>
-		<div class="container">
-			<div class="image"><img style="width: 100%;" src="/images/iconaSiwFood.png">
-		</div>
-		<div th:if="${cuoco}">
-			<h3>Nome:</h3>
-			<span th:text="${cuoco.nome}"></span>
-			<br>
-			<h3>Cognome:</h3>
-			<span th:text="${cuoco.cognome}"></span>
-			<br>
-			<div th:if="${cuoco.dataDiNascita!=null}">
-				<h3>Data di Nascita:</h3>
-				<span th:text="${cuoco.dataDiNascita}"></span>
+	<div style="width: 100%;display: flex;justify-content: center;">
+		<div class="c"style="padding: 10px;max-width: 1000px;justify-content: center;">
+			<h1 style="padding-top: 10px; padding-bottom: 10px;" th:text="${cuoco.nome}"></h1>
+			<div class="contenitoreCopertinaDescrizione">
+				<div class="contenitoreCopertina">
+					<img style="width: 100%;box-shadow: 0 2px 4px rgba(0,0,0,0.1);border-radius: 2%;"th:src="@{'data:image/jpeg;base64,'+${cuoco.copertina.generateBase64Image()}}" alt="ricetta immagine">
+				</div>
+				<div class="descrizione" style="width: 100%;">
+					<p class="riga">
+						<i class='bx bx-rename' style="font-size: 2.5rem;padding:10px;"></i>
+						<span style="padding: 10px;font-size: 1rem; font-weight: bold;">Nome e	 Cognome: </span>
+						<span style="padding: 2px;"th:text="${cuoco.nome}+' '+ ${cuoco.cognome}"></span>
+					</p>
+					<p class="riga">
+						<i class='bx bxs-calendar'style="font-size: 2.5rem;padding:10px;"></i>
+						<span style="padding: 10px;font-size: 1rem; font-weight: bold;">Data di Nasita: </span>
+						<span style="padding: 2px;"th:text="${cuoco.dataDiNascita}"></span>
+					</p>
+					<p class="riga">
+						<h2 style="padding: 10px;">Biografia</h2>
+						<div style="padding: 10px;">
+							<span th:text="${cuoco.descrizione}"></span>
+						</div>
+					</p>
+<!--					<p class="riga" th:if="${ricetta.getCuoco()!=null}">-->
+<!--						<i class='bx bxs-user-circle'style="font-size: 2.5rem;padding:10px;"></i>-->
+<!--						<span style="padding: 10px;font-size: 1rem; font-weight: bold;">Proposto da: </span>-->
+<!--						<span style="padding: 2px;"th:text="${ricetta.cuoco.nome}"></span>-->
+<!--					</p>-->
+				</div>
 			</div>
-		</div>
-		<div th:if="${cuoco}">
+<!--			<div class="main-container">-->
+<!--			    <div id="riquadro" th:unless="${#lists.isEmpty(ricetta.ingredienti)}">-->
+<!--			        <h3 style="padding-top: 10px;">Ingredienti</h3>-->
+<!--			        <ul class="colonna">-->
+<!--			            <li style="display: flex; flex-direction: row;justify-content: space-between; width: 100%;" th:each="ingrediente: ${ricetta.ingredienti}" th:classappend="'item ' + ingrediente.tipo">-->
+<!--							<div style="display: flex; flex-direction: row;">-->
+<!--				                <span><i class='bx bxs-right-arrow'></i></span>-->
+<!--				                <span th:text="${ingrediente.nome}+ ' '+${ingrediente.quantita}+ ' '+${ingrediente.misura}"></span>-->
+<!--							</div>-->
+<!--							<div style="display: flex;flex-direction: row	;">-->
+<!--							</div>-->
+			                
+<!--			            </li>-->
+<!--			        </ul>                    -->
+<!--			    </div>-->
+<!--			</div>-->
 			<div th:unless="${#lists.isEmpty(cuoco.ricette)}">
-				<h3>Ricette</h3>
-				<li th:each="ricetta: ${cuoco.ricette}">
-					<img src="/images/iconaSiwFood.png" alt="Utente">
-					<a th:href="@{'/ricetta' + '/' + ${ricetta.id}}"
-						th:text="${ricetta.nome}" style="padding: 20px;"></a>
-				</li>
+				<h2 style="padding-top: 10px; padding-bottom: 10px;">Le Mie Ricette</h2>
 			</div>
+		   <div id="cardContainer" style="margin-left: 20px;">
+				<div style="display: flex;flex-direction: column;align-items: end;" th:each="ricetta: ${cuoco.ricette}" >
+			       <div  class="card">
+						<a th:href="@{'/ricetta' + '/' + ${ricetta.id}}">
+							<img th:src="@{'data:image/jpeg;base64,'+${ricetta.copertina.generateBase64Image()}}" alt="ricetta immagine">
+						</a>
+					</div>
+			   </div>
+		  </div>
 		</div>
+	</div>
+<!--	<h2 style="padding: 20px;">Dettagli Cuoco</h2>-->
+<!--		<div class="container">-->
+<!--			<div class="image"><img style="width: 100%;" src="/images/iconaSiwFood.png">-->
+<!--		</div>-->
+<!--		<div th:if="${cuoco}">-->
+<!--			<h3>Nome:</h3>-->
+<!--			<span th:text="${cuoco.nome}"></span>-->
+<!--			<br>-->
+<!--			<h3>Cognome:</h3>-->
+<!--			<span th:text="${cuoco.cognome}"></span>-->
+<!--			<br>-->
+<!--			<div th:if="${cuoco.dataDiNascita!=null}">-->
+<!--				<h3>Data di Nascita:</h3>-->
+<!--				<span th:text="${cuoco.dataDiNascita}"></span>-->
+<!--			</div>-->
+<!--		</div>-->
+<!--		<div th:if="${cuoco}">-->
+<!--			<div th:unless="${#lists.isEmpty(cuoco.ricette)}">-->
+<!--				<h3>Ricette</h3>-->
+<!--				<li th:each="ricetta: ${cuoco.ricette}">-->
+<!--					<img src="/images/iconaSiwFood.png" alt="Utente">-->
+<!--					<a th:href="@{'/ricetta' + '/' + ${ricetta.id}}"-->
+<!--						th:text="${ricetta.nome}" style="padding: 20px;"></a>-->
+<!--				</li>-->
+<!--			</div>-->
+<!--		</div>-->
 	</body>
 </html>

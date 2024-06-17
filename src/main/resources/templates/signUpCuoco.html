@@ -21,7 +21,7 @@
 	<div class="body">
 		<div class="wrapper">
 			<h1>Sign Up</h1>
-			<form th:action="@{/registerCuoco}" method="POST">
+			<form th:action="@{/registerCuoco}" method="POST" enctype="multipart/form-data">
 				<div class="input-box">
 					<label>Nome</label>
 					<span><input type="text" placeholder="nome" required th:field="${cuoco.nome}" /></span>
@@ -63,6 +63,11 @@
 					<span th:if="${#fields.hasErrors('credentials.password')}" th:errors="${credentials.password}" th:style="'color:red'">
 					</span>
 				</div>
+				<textarea name="cover_letter" class="input-field" placeholder="Descrizione" th:field="${cuoco.descrizione}"></textarea>
+				<label for="file-upload" class="custom-file-upload">
+				    Scegli File
+				</label>
+				<span><input name="file" type="file" id="file-upload" accept="image/png , image/jpeg" required style="display:none;" onchange="updateFileName(this)" /></span>
 				<button type="submit" class="btn">Sign Up</button>
 				<div class="register-link">
 					<p>Hai già un account? <a th:href="@{/login}">Login</a></p>
@@ -71,6 +76,13 @@
 		</div>
 	</div>
 </body>
+<script>
+	function updateFileName(input) {
+	    var fileName = input.files[0].name;
+	    var label = document.querySelector(".custom-file-upload");
+	    label.textContent = fileName;
+	}
+</script>
 
 </html>
 

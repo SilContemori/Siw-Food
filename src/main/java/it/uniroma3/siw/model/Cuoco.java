@@ -17,20 +17,34 @@ public class Cuoco {
 	private String cognome;
 	@NotBlank
 	private String email;
-	
 	private LocalDate  dataDiNascita;
+	@Column(length=2000)
+	private String descrizione;
 	
-//	private String luogoDiNascita;
-//	private String descrizione;
+	@OneToOne
+	private Image copertina;
 	
 	@OneToMany(mappedBy="cuoco")
 	private List<Ricetta> ricette;
 	
+	public String getDescrizione() {
+		return descrizione;
+	}
+	public void setDescrizione(String descrizione) {
+		this.descrizione = descrizione;
+	}
 	public String getEmail() {
 		return email;
 	}
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	
+	public Image getCopertina() {
+		return copertina;
+	}
+	public void setCopertina(Image copertina) {
+		this.copertina = copertina;
 	}
 	
 	public Long getId() {

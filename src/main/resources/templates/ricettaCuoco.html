@@ -41,38 +41,75 @@
 	    </header>
 		<!--CORPO-->
 		<div class="container-nav"></div>
-		<div style="padding: 20px;">
-			<h2 style="padding-bottom: 20px;">Ricetta Modificabile</h2>
-			<div class="container">
-				<div class="image"><img style="width: 100%;" src="/images/iconaSiwFood.png">
-			</div>
-			<div th:if="${ricetta}">
-				<h3>Tipologia: </h3>
-				<span style="padding: 20px;"th:text="${ricetta.tipologia}"></span>
-				<br>
-				<h3>Nome:</h3>
-				<span style="padding: 20px;"th:text="${ricetta.nome}"></span>
-				<br>
-				<h3>Tempo di Preparazione:</h3>
-				<span style="padding: 20px;"th:text="${ricetta.tempoPreparazioneTot}+' min'"></span>
-				<br>
-				<h3>Descrizione:</h3>
-				<span style="padding: 20px;" th:text="${ricetta.descrizione}"></span>
-				<div th:if="${ricetta.getCuoco()!=null}">
-					<h3>Cuoco:</h3>
-					<span style="padding: 20px;"th:text="${ricetta.cuoco.nome}"></span>
+		<div style="width: 100%;display: flex;justify-content: center;">
+			<div class="c"style="padding: 10px;max-width: 1000px;justify-content: center;">
+				<h1 style="padding-top: 10px; padding-bottom: 10px;" th:text="${ricetta.nome}"></h1>
+				<div class="contenitoreCopertinaDescrizione">
+					<div class="contenitoreCopertina">
+						<img style="width: 100%;box-shadow: 0 2px 4px rgba(0,0,0,0.1);border-radius: 2%;"th:src="@{'data:image/jpeg;base64,'+${ricetta.copertina.generateBase64Image()}}" alt="ricetta immagine">
+					</div>
+					<div class="descrizione">
+						<p class="riga">
+							<i class='bx bxs-timer' style="font-size: 2.5rem;padding:10px;"></i>
+							<span style="padding: 10px;font-size: 1rem; font-weight: bold;">Preparazione: </span>
+							<span style="padding: 2px;"th:text="${ricetta.tempoPreparazioneTot}+' min'"></span>
+						</p>
+						<p class="riga">
+							<i class='bx bxs-notepad'style="font-size: 2.5rem;padding:10px;"></i>
+							<span style="padding: 10px;font-size: 1rem; font-weight: bold;">Tipologia: </span>
+							<span style="padding: 2px;"th:text="${ricetta.tipologia}"></span>
+						</p>
+						<p class="riga" th:if="${ricetta.getCuoco()!=null}">
+							<i class='bx bxs-user-circle'style="font-size: 2.5rem;padding:10px;"></i>
+							<span style="padding: 10px;font-size: 1rem; font-weight: bold;">Proposto da: </span>
+							<a style="text-decoration: none; color: black;" th:href="@{'/cuoco' + '/' + ${ricetta.cuoco.id}}">
+								<span style="padding: 2px;"th:text="${ricetta.cuoco.nome}"></span>
+							</a>
+						</p>
+						<div class="riga" style="gap: 0.5rem;margin-top: 1rem;">
+							<a style="text-align: center;" class="btn" th:href="@{'/formNewIngrediente' + '/'+${ricetta.id}}">Aggiungi Ingrediente</a>
+							<a style="text-align: center;" class="btn" th:href="@{'/formNewImage' + '/'+${ricetta.id}}">Aggiungi Immagine</a>
+						</div>	
+						<div th:if="${credentials.cuoco==null}">
+							<div class="riga"style="gap: 0.5rem;margin-top: 1rem;" th:if="${ricetta.getCuoco()==null}">
+								<a style="text-align: center;" class="btn"th:href="@{'/rimuoviRicetta' + '/'+${ricetta.id}}">Rimuovi Ricetta</a>
+								<a style="text-align: center;" class="btn"th:href="@{'/admin'+'/'+${ricetta.id}+'/setCuoco'}">Aggiungi Cuoco</a>
+							</div>
+						</div>
+							<div class="riga" style="padding: 10px;justify-content: space-around;"th:if="${ricetta.getCuoco()!=null}">
+								<a 	th:if="${ricetta.cuoco!=null}" style="text-align: center;" class="btn"th:href="@{'/rimuoviRicetta' + '/'+${ricetta.id}}">Rimuovi Ricetta</a>
+						</div>	
+					</div>
 				</div>
-				<div th:unless="${#lists.isEmpty(ricetta.ingredienti)}">
-					<h3>Ingredienti</h3>
-					<li th:each="ingrediente: ${ricetta.ingredienti}">
-					<!--						<img src="/images/iconaSiwFood.png" alt="Utente">-->
-					<!--						<a th:href="@{'/ricetta' + '/' + ${ricetta.id}}"-->
-					<!--							th:text="${ricetta.nome}" style="padding: 20px;"></a>-->
-						<a th:text="${ingrediente.nome}+ ' '+${ingrediente.quantita}" style="padding: 20px;"></a>
-					</li>
+				<h2 style="padding-top: 10px; padding-bottom: 10px;">Descrizione</h2>
+				<div>
+					<span th:text="${ricetta.descrizione}"></span>
 				</div>
-				<a th:href="@{'/formNewIngrediente' + '/'+${ricetta.id}}">Aggiungi Ingredienti</a>
-				<a th:href="@{'/rimuoviRicetta' + '/'+${ricetta.id}}">Rimuovi Ricetta</a>
+				<div class="main-container">
+				    <div id="riquadro" th:unless="${#lists.isEmpty(ricetta.ingredienti)}">
+				        <h3 style="padding-top: 10px;">Ingredienti</h3>
+				        <ul class="colonna">
+				            <li style="display: flex; flex-direction: row;justify-content: space-between; width: 100%;" th:each="ingrediente: ${ricetta.ingredienti}" th:classappend="'item ' + ingrediente.tipo">
+								<div style="display: flex; flex-direction: row;">
+					                <span><i class='bx bxs-right-arrow'></i></span>
+					                <span th:text="${ingrediente.nome}+ ' '+${ingrediente.quantita}+ ' '+${ingrediente.misura}"></span>
+								</div>
+								<div style="display: flex;flex-direction: row	;">
+									<a style="color: orange;" th:href="@{'/rimuoviIngrediente' + '/'+${ricetta.id}+'/'+${ingrediente.id}}"class="elimina">Elimina</a>
+								</div>
+				                
+				            </li>
+				        </ul>                    
+				    </div>
+				</div>
+			   <div id="cardContainer" style="margin-left: 20px;">
+					<div style="display: flex;flex-direction: column;align-items: end;" th:each="image: ${images}" >
+				       <div  class="card">
+							<img th:src="@{'data:image/jpeg;base64,'+${image.generateBase64Image()}}" alt="ricetta immagine">
+						</div>
+						<a class="elimina"style="padding-right: 10px;"	th:href="@{'/rimuoviImmagine' + '/'+${ricetta.id}+'/'+${image.id}}">Elimina</a>
+				   </div>
+			  </div>
 			</div>
 		</div>
 	</body>

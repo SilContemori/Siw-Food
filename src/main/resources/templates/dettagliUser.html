@@ -48,36 +48,13 @@
 				<div class="left__col">
 					<div class="relative">
 						<div class="image__container">
-							<img src="/images/iconaSiwFood.png	" alt="Utente">
+							<img src="/images/immagineProfiloUser.png	" alt="Utente">
 						</div>
 					</div>
 					<h2 th:text="${user.name}+' '+${user.surname}"></h2>
 					<p th:text="${user.email}"></p>
-<!--					<div th:if="${user.dataDiNascita!=null}">-->
-<!--						<p th:text="${user.dataDiNascita}"></p>-->
-<!--					</div>-->
-				</div>
-				<div class="right__col">
-					<nav class="nav"style="padding:20px">
-<!--						<ul>-->
-<!--							<li><a th:href="@{'/formNewRicetta'}">aggiungi ricetta</a></li>-->
-<!--							<li><a href="#">modifica ricetta</a></li>  manda pagina per selezionare ricetta da modificate-->
-<!--							<li><a href="#">rimuovi ricetta</a></li>-->
-<!--							<li><a href="#">aggiungi cuoco</a></li>-->
-<!--							<li><a href="#">rimuovi cuoco</a></li>-->
-<!--							<li><a href="#">ricette</a></li>-->
-<!--						</ul>-->
-					</nav>
-<!--					<div th:unless="${#lists.isEmpty(cuoco.ricette)}" class="photos">-->
-<!--						<li th:each="ricetta: ${cuoco.ricette}">-->
-<!--							<img src="/images/iconaSiwFood.png" alt="Utente">-->
-<!--							<a th:href="@{'/ricetta' + '/' + ${ricetta.id}}"-->
-<!--								th:text="${ricetta.nome}" style="padding: 20px;"></a>-->
-<!--						</li>-->
-					</div>
 				</div>
 			</div>
-		</div>
 		</div>
    </body>
 </html>

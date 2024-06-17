@@ -5,7 +5,7 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" href="/css/global.css">
-		<link rel="stylesheet" href="/css/ricette.css">
+		<link rel="stylesheet" href="/css/formNewIngrediente.css">
 		<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 	</head>
 	<body>
@@ -40,28 +40,24 @@
         </ul>
     </header>
 	<!--CORPO-->
-	<div class="container-nav"></div>
-	<h1>Aggiungi una Ingrediente</h1>
-		<form th:action="@{'/newIngrediente' + '/'+${ricetta.id}}" method="POST" th:object="${ingrediente}">
-	  		<div th:if="${#fields.hasGlobalErrors()}">
-	  			<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p> 
-	  		</div>
-			
-			<div>
-				<label>Nome:</label> 
-				<span><input type="text" th:field="${ingrediente.nome}" /></span>
-			    <span th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}">
-			    </span>
-				<label>Quantità:</label> 
-				<span><input required type="number" th:field="${ingrediente.quantita}" /></span>
-			    <span th:if="${#fields.hasErrors('quantita')}" th:errors="*{quantita}">
-			    </span>
+<!--	<div class="container-nav"></div>-->
+	<div class="body">
+			<div class="wrapper">
+				<div class="container">
+				    <div class="card">
+						<h2>Aggiungi Ingrediente</h2>
+						<form class="form-container" th:action="@{'/newIngrediente' + '/'+${ricetta.id}}" method="POST" th:object="${ingrediente}">
+					  		<div th:if="${#fields.hasGlobalErrors()}">
+					  			<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p> 
+					  		</div>
+							<input type="text" class="input-field"  th:field="${ingrediente.nome}"placeholder="Nome">
+							<input type="number" class="input-field"th:field="${ingrediente.quantita}"placeholder="Quantità">
+							<input type="text" class="input-field"  th:field="${ingrediente.misura}"placeholder="Unità di Misura">
+							<button type="submit" class="submit-button">Conferma</button>
+						</form>
+					</div>
+				</div>
 			</div>
-			<div>
-				<span><button type="submit">Conferma</button></span>
-			</div>
-		</form>
-
-			
+	  </div>			
 	</body>
 </html>
