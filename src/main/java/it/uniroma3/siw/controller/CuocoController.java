@@ -112,10 +112,9 @@ public class CuocoController {
 		} else {
 			return "admin/formNewCuoco.html"; 
 		}
-
 	}
 
-	/*GET RIMOZIONE DEL CUOCO E TUTTE LE SUE RICETTE*/
+	/*GET RIMOZIONE DEL CUOCO*/
 	@GetMapping("/admin/rimuoviCuoco/{idCuoco}")
 	public String cancellaCuoco(@PathVariable("idCuoco") Long idCuoco, Model model) {
 		UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();

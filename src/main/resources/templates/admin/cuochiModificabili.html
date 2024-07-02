@@ -47,7 +47,7 @@
 				<div id="cardContainer" style="margin-left: 20px;">
 						<div style="display: flex;flex-direction: column;align-items: center;" th:each="cuoco: ${cuochi}" >
 					       <div  class="card">
-								<img style="width: 100%;box-shadow: 0 2px 4px rgba(0,0,0,0.1);border-radius: 2%;" src="/images/iconaSiwFood.png" alt="ricetta immagine">
+								<img style="width: 100%;box-shadow: 0 2px 4px rgba(0,0,0,0.1);border-radius: 2%;"th:src="@{'data:image/jpeg;base64,'+${cuoco.copertina.generateBase64Image()}}" alt="ricetta immagine">
 							</div>
 							<a th:href="@{'/admin/rimuoviCuoco/' + ${cuoco.id}}"
 								th:text="${cuoco.nome}" style="padding: 5px;text-transform: uppercase;color: black;"></a>
