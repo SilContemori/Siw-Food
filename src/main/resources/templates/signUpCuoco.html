@@ -63,7 +63,9 @@
 					<span th:if="${#fields.hasErrors('credentials.password')}" th:errors="${credentials.password}" th:style="'color:red'">
 					</span>
 				</div>
-				<textarea name="cover_letter" class="input-field" placeholder="Descrizione" th:field="${cuoco.descrizione}"></textarea>
+				<textarea name="cover_letter" class="input-field" placeholder="Descrizione" required th:field="${cuoco.descrizione}"></textarea>
+				<span th:if="${#fields.hasErrors('cuoco.descrizione')}" th:errors="${cuoco.descrizione}" th:style="'color:red'">
+				</span>
 				<label for="file-upload" class="custom-file-upload">
 				    Scegli File
 				</label>
