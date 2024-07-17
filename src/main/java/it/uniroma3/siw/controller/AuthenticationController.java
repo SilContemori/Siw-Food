@@ -69,9 +69,7 @@ public class AuthenticationController {
 	
 	@PostMapping(value = { "/register" })
     public String registerUser(@Valid @ModelAttribute("user") User user,
-                 BindingResult userBindingResult, @Valid
-                 @ModelAttribute("credentials")Credentials credentials,
-                 BindingResult credentialsBindingResult,
+                 BindingResult userBindingResult, @Valid@ModelAttribute("credentials")Credentials credentials,BindingResult credentialsBindingResult,
                  Model model) {
         if(!userBindingResult.hasErrors() && !credentialsBindingResult.hasErrors()) {
             userService.saveUser(user);
@@ -92,12 +90,11 @@ public class AuthenticationController {
 	}
 	
 	@PostMapping(value = { "/registerCuoco" },consumes = "multipart/form-data")
-    public String registerCuoco(@Valid @ModelAttribute("cuoco") Cuoco cuoco,@RequestPart("file") MultipartFile file,
-                 BindingResult userBindingResult, @Valid
-                 @ModelAttribute("credentials") Credentials credentials,
-                 BindingResult credentialsBindingResult,
+    public String registerCuoco(@Valid @ModelAttribute("cuoco") Cuoco cuoco,BindingResult cuocoBindingResult,
+                  @Valid@ModelAttribute("credentials") Credentials credentials,BindingResult credentialsBindingResult,
+                  @RequestPart("file") MultipartFile file,
                  Model model) {
-        if(!userBindingResult.hasErrors() && !credentialsBindingResult.hasErrors()) {
+        if(!cuocoBindingResult.hasErrors() && !credentialsBindingResult.hasErrors()) {
         	try {
 				Image i=new Image();
 				i.setImageData(file.getBytes());
@@ -112,7 +109,7 @@ public class AuthenticationController {
             model.addAttribute("cuoco", cuoco);
             return "logIn.html";
         }
-        return "registerCuoco";
+        return "signUpCuoco.html";
     }
 	
 	/*GET CHE MOSTRA LA HOME PAGE (O PAGINA DEDICATA A SECONDA DEL RUOLO) DOPO LOG IN*/

@@ -3,15 +3,16 @@ package it.uniroma3.siw.model;
 import java.util.List;
 import java.util.Objects;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 @Entity
 public class Ingrediente {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
-	@NotNull
+	@NotBlank
 	private String nome;
-	@NotNull
+	@NotBlank
 	private int quantita;
 	
 	private String misura;

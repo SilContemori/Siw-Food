@@ -6,19 +6,20 @@ import java.util.Objects;
 import org.apache.tomcat.util.codec.binary.Base64;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 @Entity
 public class Ricetta {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
-	@NotNull
+	@NotBlank
 	private String nome;
-	@NotNull
+	@NotBlank
 	private Float tempoPreparazioneTot;//min
 	@Column(length=2000)
 	private String descrizione;
-	@NotNull
+	@NotBlank
 	private String tipologia; //se primo,secondo,contorno,dolce
 	
 	@OneToMany
